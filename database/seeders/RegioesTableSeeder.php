@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RegioesTableSeeder
+class RegioesTableSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         DB::table('regioes')->insert([
             ['id' => 1, 'nome' => 'Norte'],

@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class EstadosTableSeeder
+class EstadosTableSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         DB::table('estados')->insert([
             ['id' => 1, 'nome' => 'Acre', 'uf' => 'AC', 'regiao_id' => 1],

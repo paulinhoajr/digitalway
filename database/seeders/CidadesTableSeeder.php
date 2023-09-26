@@ -12,7 +12,7 @@ class CidadesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         DB::table('cidades')->insert([
             ['id' => 1, 'estado_id' => 22, 'ibge' => 1100015, 'nome' => 'Alta Floresta D\'Oeste', 'uf' => 'RO', 'cep' => NULL],

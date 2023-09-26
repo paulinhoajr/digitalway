@@ -1,0 +1,13 @@
+php artisan optimize && php artisan cache:clear && php artisan config:clear
+php artisan config:cache  && php artisan view:clear
+
+composer dumpauto
+
+npm run build
+
+php artisan storage:link
+php artisan queue:work
+sudo supervisorctl restart all
+
+
+chmod -Rf 777 /var/www/voopeclubes/storage/
