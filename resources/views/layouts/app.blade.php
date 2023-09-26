@@ -27,8 +27,11 @@
                 </header>
             @endif
 
+
+
             <!-- Page Content -->
             <main>
+                @include('message')
                 {{ $slot }}
             </main>
         </div>

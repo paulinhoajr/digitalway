@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Usuario;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
-class RegisteredUserController extends Controller
+class RegisteredUsuarioController extends Controller
 {
     /**
      * Display the registration view.
@@ -31,20 +31,22 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'nome' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Usuario::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $usuario = new Usuario();
+        $usuario->nome = $request->nome;
+        $usuario->email = $request->email;
+        $usuario->password = Hash::make($request->password);
+        $usuario->role = "ROLE_USUARIO";
+        $usuario->situacao = 0;
+        $usuario->save();
 
-        event(new Registered($user));
+        event(new Registered($usuario));
 
-        Auth::login($user);
+        Auth::login($usuario);
 
         return redirect(RouteServiceProvider::HOME);
     }
