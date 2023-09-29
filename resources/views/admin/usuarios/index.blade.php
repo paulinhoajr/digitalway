@@ -16,6 +16,10 @@
     </div>
 
     <div class="table-responsive small">
+
+        <a href="{{ route('admin.usuarios.create') }}" type="button" class="float-end ri btn btn-outline-secondary btn-sm">
+            <svg class="bi"><use xlink:href="#usuario"/></svg> NOVO USUÁRIO</a>
+
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -23,6 +27,7 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Email</th>
                     <th scope="col">CPF</th>
+                    <th scope="col">Regra</th>
                     <th scope="col">Situação</th>
                     <th scope="col">Criado</th>
                     <th scope="col"></th>
@@ -35,6 +40,7 @@
                     <td>{{ $usuario->nome }}</td>
                     <td>{{ $usuario->email }}</td>
                     <td>{{ $usuario->cpf }}</td>
+                    <td>{{ $usuario->role }}</td>
                     <td>
                         @if($usuario->situacao == 1)
                             <button class="btn btn-outline-success btn-sm disabled"><svg class="bi"><use xlink:href="#checado"/></svg></button>

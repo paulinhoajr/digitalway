@@ -48,3 +48,61 @@
         {{ $escolas->onEachSide(1)->links('admin._partials.pagination') }}
     </div>
 @endsection
+
+
+
+@section('scripts')
+
+    <script>
+        $(function() {
+            $( "#cidade" ).autocomplete({
+                minLength: 2,
+                source: function( request, response ) {
+                    $.ajax({
+                        url: '{{route('cidades.autocomplete')}}',
+                        dataType: "json",
+                        data: {
+                            busca: $('#cidade').val()
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    //console.log("select: "+ui.item.value);
+                    $('#cidade').val(ui.item.value);
+                    $('#cep').val(ui.item.cep).mask('99999-999');
+                    $('#cidade_id').val(ui.item.id);
+                    $('#estado_id').val(ui.item.estado_id);
+                    return false;
+                },
+                focus: function(event, ui){
+                    //console.log("focus: "+ui.item.value);
+                    $("#cidade" ).val(ui.item.value);
+                    $("#cep" ).val(ui.item.cep).mask('99999-999');
+                    $('#cidade_id').val(ui.item.id);
+                    $('#estado_id').val(ui.item.estado_id);
+                    return false;
+                },
+            });
+        });
+
+        $("#cpf").mask("999.999.999-99");
+        $("#nascimento").mask("99/99/9999");
+        $("#assoc_data").mask("99/99/9999");
+        $("#assoc_vencimento").mask("99/99/9999");
+        $("#cr_vencimento").mask("99/99/9999");
+        $('#telefone').mask('(99) 9999-9999');
+        $('#whatsapp').mask('(99) 9 9999-9999');
+        $('#cep').mask('99999-999');
+
+        /*setTimeout(
+            function() {
+                $('#password').val('');
+            },
+            500
+        );*/
+    </script>
+
+@endsection

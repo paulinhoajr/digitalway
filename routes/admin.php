@@ -23,6 +23,7 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
             ->name('admin.')
             ->group(function () {
                 Route::get('/', 'index')->name('usuarios.index');
+                Route::get('/create', 'create')->name('usuarios.create');
                 Route::get('/show/{id}', 'show')->name('usuarios.show');
                 Route::get('/edit/{id}', 'edit')->name('usuarios.edit');
                 Route::get('/delete/{id}', 'delete')->name('usuarios.delete');

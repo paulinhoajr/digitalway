@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Alterar {{ $usuario->nome }}</h1>
+        <h1 class="h2">Novo Usuário</h1>
         {{--<div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
                 <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -17,41 +17,40 @@
     <div class="">
         <form action="" method="post">
             @csrf
-            <input type="hidden" name="id" value="{{ $usuario->id }}">
             <div class="row g-3">
                 <div class="col-sm-4">
                     <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="{{ $usuario->nome }}" required>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
                 </div>
                 <div class="col-sm-4">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="mail@mail.com" value="{{ $usuario->email }}" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="mail@mail.com" required>
                 </div>
                 <div class="col-sm-4">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input disabled type="cpf" class="form-control" id="cpf" placeholder="000.000.000-00" value="{{ $usuario->cpf }}">
+                    <input type="cpf" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" required>
                 </div>
 
                 <div class="col-sm-3">
                     <label for="password" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="password" name="password" value="" required>
+                    <input type="password" autocomplete="new-password" class="form-control" id="password" name="password" required>
                 </div>
                 <div class="col-sm-3">
-                    <label for="confirm_password" class="form-label">Repita Senha</label>
-                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" value="">
+                    <label for="password_confirmation" class="form-label">Repita Senha</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                 </div>
                 <div class="col-sm-3">
                     <label for="role" class="form-label">Regra</label>
                     <select class="form-select" id="role" name="role">
-                        <option {{ $usuario->role == "ROLE_USUARIO" ? "selected" : "" }} value="ROLE_USUARIO">USUARIO</option>
-                        <option {{ $usuario->role == "ROLE_ADMIN" ? "selected" : "" }} value="ROLE_ADMIN">ADMIN</option>
+                        <option value="ROLE_USUARIO">USUARIO</option>
+                        <option value="ROLE_ADMIN">ADMIN</option>
                     </select>
                 </div>
                 <div class="col-sm-3">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-select" id="situacao" name="situacao">
-                        <option {{ $usuario->situacao == 1 ? "selected" : "" }} value="1">Ativo</option>
-                        <option {{ $usuario->situacao == 0 ? "selected" : "" }} value="0">Inativo</option>
+                        <option value="1">Ativo</option>
+                        <option value="0">Inativo</option>
                     </select>
                 </div>
 
@@ -59,7 +58,7 @@
 
             <hr class="my-4">
 
-            <button class="float-end btn btn-primary btn-lg" type="submit">Alterar Usuário</button>
+            <button class="float-end btn btn-primary btn-lg" type="submit">Inserir Usuário</button>
         </form>
     </div>
 @endsection

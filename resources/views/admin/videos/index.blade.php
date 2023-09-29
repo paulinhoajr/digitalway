@@ -23,7 +23,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Cidade</th>
                 <th scope="col">Escola</th>
-                <th scope="col">PDF</th>
+                <th scope="col">URL</th>
                 <th scope="col">Situação</th>
                 <th scope="col">Criado</th>
                 <th scope="col"></th>
@@ -36,7 +36,7 @@
                     <td>{{ $video->nome }}</td>
                     <td>{{ $video->cidade ? $video->cidade->nome : "-----" }}</td>
                     <td>{{ $video->escola ? $video->escola->nome : "-----" }}</td>
-                    <td>{{ $video->pdf }}</td>
+                    <td>{{ $video->url }}</td>
                     <td>
                         @if($video->situacao == 1)
                             <button class="btn btn-outline-success btn-sm disabled"><svg class="bi"><use xlink:href="#checado"/></svg></button>
