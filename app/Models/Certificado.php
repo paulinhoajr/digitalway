@@ -10,7 +10,14 @@ class Certificado extends Model
 {
     use SoftDeletes, HasFactory;
 
-    public $timestamps = false;
+    public $timestamps = true;
 
+    public function usuario(){
+        return $this->belongsTo(Usuario::class);
+    }
+
+    public function treinamento(){
+        return $this->belongsTo(Treinamento::class);
+    }
 
 }

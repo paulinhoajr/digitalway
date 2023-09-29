@@ -9,7 +9,7 @@ class Regioes extends Model
 {
     use SoftDeletes;
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function estados()
     {

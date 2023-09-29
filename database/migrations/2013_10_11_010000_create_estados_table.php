@@ -13,6 +13,8 @@ return new class extends Migration
             $table->unsignedBigInteger('regiao_id')->unsigned();
             $table->string('nome');
             $table->string('uf');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         /*Schema::table('estados', function (Blueprint $table) {

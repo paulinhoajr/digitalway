@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->unsignedBigInteger('treinamento_id');
-            $table->dateTime('data');
-            //$table->integer('situacao');
-            $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -9,7 +9,7 @@ class Estados extends Model
 {
     use SoftDeletes;
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function cidades()
     {

@@ -10,7 +10,13 @@ class Treinamento extends Model
 {
     use SoftDeletes, HasFactory;
 
-    public $timestamps = false;
+    public $timestamps = true;
 
+    public function cidade(){
+        return $this->belongsTo(Cidades::class);
+    }
 
+    public function escola(){
+        return $this->belongsTo(Escola::class);
+    }
 }

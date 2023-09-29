@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::create('treinamentos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cidade_id');
+            $table->unsignedBigInteger('cidade_id')
+                ->nullable()
+                ->comment("pode nao ser ligado a uma cidade");
             $table->unsignedBigInteger('escola_id')
                 ->nullable()
                 ->comment("pode nao ser ligado a uma escola");
-            //$table->foreign('cidade_id')->references('id')->on('cidades');
             $table->string('nome');
             $table->string('qrcode')->comment('liberar certificado ?');
             $table->longText('descricao');
-            $table->integer('tipo')->comment('tem que ver, mas pode ser pra todos ou limitado');
             $table->integer('situacao');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

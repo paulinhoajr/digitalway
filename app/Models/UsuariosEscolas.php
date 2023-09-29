@@ -10,7 +10,13 @@ class UsuariosEscolas extends Model
 {
     use SoftDeletes, HasFactory;
 
-    public $timestamps = false;
+    public $timestamps = true;
 
+    public function usuario(){
+        return $this->belongsTo(Usuario::class);
+    }
 
+    public function escola(){
+        return $this->belongsTo(Escola::class);
+    }
 }
