@@ -11,14 +11,19 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-         //\App\Models\Usuario::factory(10)->create();
-
         $this->call([
             RegioesTableSeeder::class,
             EstadosTableSeeder::class,
             CidadesTableSeeder::class,
             UsuariosTableSeeder::class,
         ]);
+
+        \App\Models\Escola::factory(30)->create();
+        \App\Models\Espera::factory(30)->create();
+        \App\Models\Usuario::factory(250)->create();
+        \App\Models\Treinamento::factory(20)->create();
+        \App\Models\Certificado::factory(250)->create();
+        \App\Models\UsuariosEscolas::factory(700)->create();
 
     }
 }

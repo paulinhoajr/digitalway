@@ -8,14 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('regioes', function (Blueprint $table) {
+        Schema::create('escolas', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedBigInteger('cidade_id');
             $table->string('nome');
+            $table->integer('tipo')->comment('publica/privada');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('regioes');
+        Schema::dropIfExists('escolas');
     }
 };

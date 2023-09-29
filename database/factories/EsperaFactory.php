@@ -1,0 +1,23 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class EsperaFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'escola_id' => rand(1, 30),
+            'nome' => fake()->name(),
+            'cpf' => fake()->unique()->imei(),
+        ];
+    }
+}

@@ -18,7 +18,10 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()){
-            if(auth()->user()->role != "ROLE_ADMIN"){
+            if(
+                auth()->user()->role != "ROLE_SUPERADMIN" AND
+                auth()->user()->role != "ROLE_ADMIN"
+            ){
                 abort(403);
             }
         }

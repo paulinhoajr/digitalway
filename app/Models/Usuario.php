@@ -20,11 +20,6 @@ class Usuario extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,10 +41,30 @@ class Usuario extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function isSuperAdmin()
+    {
+        if ('ROLE_SUPERADMIN'==Auth::user()->role or
+            'ROLE_ADMIN'==Auth::user()->role or
+            'ROLE_USUARIO'==Auth::user()->role){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function isAdmin()
     {
         if ('ROLE_ADMIN'==Auth::user()->role or
             'ROLE_USUARIO'==Auth::user()->role){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function isUsuario()
+    {
+        if ('ROLE_USUARIO'==Auth::user()->role){
             return true;
         }else{
             return false;

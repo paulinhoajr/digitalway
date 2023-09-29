@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
 
+Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
 
-Route::get('/admin', function () {
+    Route::controller(AdminController::class)
+        ->name('admin.')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
 
-    dd("admin");
-    //return view('admin_dashboard');
-
-})->middleware(['auth', 'verified'])->name('admin_dashboard');
-
+})->middleware(['auth','admin', 'verified']);
