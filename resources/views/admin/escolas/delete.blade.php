@@ -9,7 +9,7 @@
                 <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
             </div>
             <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
-                <svg class="bi"><use xlink:href="#calendar3"/></svg>
+                <svg class="bi"><use xlink:href="#icon_calendar3"/></svg>
                 This week
             </button>
         </div>--}}
@@ -21,7 +21,7 @@
 
         <p>Confirma que gostaria de excluir a escola {{$escola->nome}}?</p>
         <a href="{{ route('admin.escolas.destroy', ['id'=>$escola->id]) }}" type="button" class="float-end btn btn-outline-danger btn-sm">
-            <svg class="bi"><use xlink:href="#excluir"/></svg> EXCLUIR</a>
+            <svg class="bi"><use xlink:href="#icon_excluir"/></svg> EXCLUIR</a>
 
     </div>
 @endsection

@@ -31,8 +31,8 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(GeralController::class)
     ->group(function (){
-        Route::get('autocomplete', 'autocomplete')->name('cidades.autocomplete');
-        Route::get('autocompleteEscola', 'autocompleteEscola')->name('escolas.autocompleteEscola');
+        Route::get('autocomplete/cidades', 'autocomplete')->name('cidades.autocomplete');
+        Route::get('autocomplete/escolas', 'autocomplete_escola')->name('escolas.autocomplete');
     });
 
 require __DIR__.'/auth.php';

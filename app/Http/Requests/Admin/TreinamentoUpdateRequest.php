@@ -29,6 +29,7 @@ class TreinamentoUpdateRequest extends FormRequest
             'cidade_id' => ['nullable'],
             'nome' => ['required'],
             'descricao' => ['required'],
+            'situacao' => ['nullable'],
         ];
     }
 

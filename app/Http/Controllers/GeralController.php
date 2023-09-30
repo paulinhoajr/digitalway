@@ -42,15 +42,15 @@ class GeralController extends Controller
         echo json_encode($skillData);
     }
 
-    public function autocompleteEscola(Request $request)
+    public function autocomplete_escola(Request $request)
     {
-        $keyword = $request->get('escola');
+        $keyword = $request->get('busca');
 
         if( ! $keyword){
             return response()->json(['results' => []]);
         }
 
-        $results = Escola::take(20)->get();
+        $results = Escola::where('nome', 'LIKE', '%'.$keyword.'%')->take(20)->get();
 
         $skillData = array();
 

@@ -9,7 +9,7 @@
                 <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
             </div>
             <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
-                <svg class="bi"><use xlink:href="#calendar3"/></svg>
+                <svg class="bi"><use xlink:href="#icon_calendar3"/></svg>
                 This week
             </button>
         </div>--}}
@@ -20,7 +20,7 @@
         @include('admin._partials.message')
 
         <a href="{{ route('admin.usuarios.create') }}" type="button" class="float-end ri btn btn-outline-secondary btn-sm">
-            <svg class="bi"><use xlink:href="#usuario"/></svg> NOVO USUÁRIO</a>
+            <svg class="bi"><use xlink:href="#icon_usuario"/></svg> NOVO USUÁRIO</a>
 
         <table class="table table-striped table-sm">
             <thead>
@@ -45,17 +45,17 @@
                     <td>{{ $usuario->role }}</td>
                     <td>
                         @if($usuario->situacao == 1)
-                            <button class="btn btn-outline-success btn-sm disabled"><svg class="bi"><use xlink:href="#checado"/></svg></button>
+                            <button class="btn btn-outline-success btn-sm disabled"><svg class="bi"><use xlink:href="#icon_checado"/></svg></button>
                         @else
-                            <button class="btn btn-outline-danger btn-sm disabled"><svg class="bi"><use xlink:href="#excluir"/></svg></button>
+                            <button class="btn btn-outline-danger btn-sm disabled"><svg class="bi"><use xlink:href="#icon_excluir"/></svg></button>
                         @endif
                     </td>
                     <td>{{ dateTimeUsParaDateTimeBr($usuario->created_at) }}</td>
                     <td>
                         <div class="btn-group float-end" role="group" aria-label="">
-                            <a href="{{ route('admin.usuarios.show', ['id'=>$usuario->id]) }}" type="button" class="ri btn btn-outline-success btn-sm"><svg class="bi"><use xlink:href="#mostrar"/></svg> MOSTRAR</a>
-                            <a href="{{ route('admin.usuarios.edit', ['id'=>$usuario->id]) }}" type="button" class="ri btn btn-outline-primary btn-sm"><svg class="bi"><use xlink:href="#editar"/></svg> EDITAR</a>
-                            <a href="{{ route('admin.usuarios.delete', ['id'=>$usuario->id]) }}" type="button" class="btn btn-outline-danger btn-sm"><svg class="bi"><use xlink:href="#excluir"/></svg> EXCLUIR</a>
+                            <a href="{{ route('admin.usuarios.show', ['id'=>$usuario->id]) }}" type="button" class="ri btn btn-outline-success btn-sm"><svg class="bi"><use xlink:href="#icon_mostrar"/></svg> MOSTRAR</a>
+                            <a href="{{ route('admin.usuarios.edit', ['id'=>$usuario->id]) }}" type="button" class="ri btn btn-outline-primary btn-sm"><svg class="bi"><use xlink:href="#icon_editar"/></svg> EDITAR</a>
+                            <a href="{{ route('admin.usuarios.delete', ['id'=>$usuario->id]) }}" type="button" class="btn btn-outline-danger btn-sm"><svg class="bi"><use xlink:href="#icon_excluir"/></svg> EXCLUIR</a>
                         </div>
                     </td>
                 </tr>

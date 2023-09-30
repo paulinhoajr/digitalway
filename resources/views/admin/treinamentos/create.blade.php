@@ -21,9 +21,16 @@
         <form action="{{ route('admin.treinamentos.store') }}" method="post">
             @csrf
             <div class="row g-3">
-                <div class="col-sm-12">
+                <div class="col-sm-9">
                     <label for="nome" class="form-label">Nome</label>
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome da escola" value="{{old('nome')}}" required>
+                </div>
+                <div class="col-sm-3">
+                    <label for="situacao" class="form-label">Situação</label>
+                    <select class="form-select" id="situacao" name="situacao">
+                        <option value="1">Ativo</option>
+                        <option value="0">Inativo</option>
+                    </select>
                 </div>
                 <div class="col-sm-6">
                     <label class="form-label" for="cidade">Buscar cidade - Selecione na lista</label>
@@ -37,7 +44,7 @@
                 </div>
 
                 <div class="col-sm-12">
-                    <label class="form-label" for="escola">Descrição</label>
+                    <label class="form-label" for="descricao">Descrição</label>
                     <textarea name="descricao" class="form-control">{{ old('descricao') }}</textarea>
                 </div>
 
@@ -59,10 +66,10 @@
                 minLength: 2,
                 source: function( request, response ) {
                     $.ajax({
-                        url: '{{ route('escolas.autocompleteEscola') }}',
+                        url: '{{ route('escolas.autocomplete') }}',
                         dataType: "json",
                         data: {
-                            escola: $('#escola').val()
+                            busca: $('#escola').val()
                         },
                         success: function(data) {
                             response(data);

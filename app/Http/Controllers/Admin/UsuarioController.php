@@ -18,8 +18,7 @@ class UsuarioController extends Controller
 {
     public function index(): View
     {
-        $usuarios = Usuario::where('role', "ROLE_USUARIO")
-            ->orWhere('role', "ROLE_ADMIN")
+        $usuarios = Usuario::where('role', "!=","ROLE_SUPERADMIN")
             ->paginate(config('app.paginate'));
 
         return view('admin.usuarios.index', [
@@ -29,8 +28,7 @@ class UsuarioController extends Controller
 
     public function show($id): View
     {
-        $usuario = Usuario::where('role', "ROLE_USUARIO")
-            ->orWhere('role', "ROLE_ADMIN")
+        $usuario = Usuario::where('role', "!=","ROLE_SUPERADMIN")
             ->where('id', $id)
             ->first();
 
@@ -82,8 +80,7 @@ class UsuarioController extends Controller
 
     public function edit($id): View
     {
-        $usuario = Usuario::where('role', "ROLE_USUARIO")
-            ->orWhere('role', "ROLE_ADMIN")
+        $usuario = Usuario::where('role', "!=","ROLE_SUPERADMIN")
             ->where('id', $id)
             ->first();
 
@@ -99,9 +96,7 @@ class UsuarioController extends Controller
 
             DB::beginTransaction();
 
-            $usuario = Usuario::where('role', "ROLE_USUARIO")
-                ->orWhere('role', "ROLE_ADMIN")
-                ->where('id', $request->id)
+            $usuario = Usuario::where('id', $request->id)
                 ->first();
 
             $usuario->nome = $request->nome;
@@ -130,8 +125,7 @@ class UsuarioController extends Controller
 
     public function delete($id): View
     {
-        $usuario = Usuario::where('role', "ROLE_USUARIO")
-            ->orWhere('role', "ROLE_ADMIN")
+        $usuario = Usuario::where('role', "!=","ROLE_SUPERADMIN")
             ->where('id', $id)
             ->first();
 
@@ -142,8 +136,7 @@ class UsuarioController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        $usuario = Usuario::where('role', "ROLE_USUARIO")
-            ->orWhere('role', "ROLE_ADMIN")
+        $usuario = Usuario::where('role', "!=","ROLE_SUPERADMIN")
             ->where('id', $id)
             ->first();
 

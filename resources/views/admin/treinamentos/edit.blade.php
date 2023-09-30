@@ -22,9 +22,16 @@
             @csrf
             <input type="hidden" name="id" value="{{ $treinamento->id }}">
             <div class="row g-3">
-                <div class="col-sm-12">
+                <div class="col-sm-9">
                     <label for="nome" class="form-label">Nome</label>
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome da escola" value="{{ $treinamento->nome }}" required>
+                </div>
+                <div class="col-sm-3">
+                    <label for="situacao" class="form-label">Situação</label>
+                    <select class="form-select" id="situacao" name="situacao">
+                        <option {{ $treinamento->situacao == 1 ? "selected" : "" }} value="1">Ativo</option>
+                        <option {{ $treinamento->situacao == 0 ? "selected" : "" }} value="0">Inativo</option>
+                    </select>
                 </div>
                 <div class="col-sm-6">
                     <label class="form-label" for="cidade">Buscar cidade - Selecione na lista</label>
@@ -32,13 +39,13 @@
                     <input type="hidden" name="cidade_id" id="cidade_id" value="{{ $treinamento->cidade_id }}">
                 </div>
                 <div class="col-sm-6">
-                    <label class="form-label" for="cidade">Buscar escola - Selecione na lista</label>
+                    <label class="form-label" for="escola">Buscar escola - Selecione na lista</label>
                     <input type="text" class="form-control"  id="escola" name="escola"  value="{{ $treinamento->escola->nome }}"  placeholder="Escola">
                     <input type="hidden" name="escola_id" id="escola_id" value="{{ $treinamento->escola_id }}">
                 </div>
 
                 <div class="col-sm-12">
-                    <label class="form-label" for="escola">Descrição</label>
+                    <label class="form-label" for="descricao">Descrição</label>
                     <textarea name="descricao" class="form-control">{{ $treinamento->descricao }}</textarea>
                 </div>
 
@@ -60,10 +67,10 @@
                 minLength: 2,
                 source: function( request, response ) {
                     $.ajax({
-                        url: '{{ route('escolas.autocompleteEscola') }}',
+                        url: '{{ route('escolas.autocomplete') }}',
                         dataType: "json",
                         data: {
-                            escola: $('#escola').val()
+                            busca: $('#escola').val()
                         },
                         success: function(data) {
                             response(data);

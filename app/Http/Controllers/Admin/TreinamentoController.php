@@ -44,6 +44,7 @@ class TreinamentoController extends Controller
             $treinamento->cidade_id = $request->cidade_id ?? null;
             $treinamento->escola_id = $request->escola_id ?? null;
             $treinamento->descricao = $request->descricao;
+            $treinamento->situacao = $request->situacao;
             $treinamento->save();
 
             DB::commit();
@@ -85,6 +86,7 @@ class TreinamentoController extends Controller
             $treinamento->cidade_id = $request->cidade_id ?? null;
             $treinamento->escola_id = $request->escola_id ?? null;
             $treinamento->descricao = $request->descricao;
+            $treinamento->situacao = $request->situacao;
             $treinamento->save();
 
             DB::commit();
