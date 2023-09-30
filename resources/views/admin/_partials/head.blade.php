@@ -16,7 +16,8 @@
 <link rel="icon" href="{{asset('images/favicons/favicon.ico')}}">
 <meta name="theme-color" content="#712cf9">
 
-<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('css/style.css')}}" rel="stylesheet">
 <link href="{{asset('css/bootstrap-icons.min.css')}}" rel="stylesheet">
 <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">

@@ -16,6 +16,12 @@
     </div>
 
     <div class="table-responsive small">
+
+        @include('admin._partials.message')
+
+        <a href="{{ route('admin.escolas.create') }}" type="button" class="float-end ri btn btn-outline-secondary btn-sm">
+            <svg class="bi"><use xlink:href="#escola"/></svg> NOVA ESCOLA</a>
+
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -32,13 +38,13 @@
                 <tr>
                     <td>{{ $escola->id }}</td>
                     <td>{{ $escola->nome }}</td>
-                    <td>{{ $escola->cidade->nome }}</td>
+                    <td>{{ $escola->cidade->nome }} - {{ $escola->cidade->uf }}</td>
                     <td>{{ $escola->tipo == 1 ? "Pública" : "Particular" }}</td>
                     <td>{{ dateTimeUsParaDateTimeBr($escola->created_at) }}</td>
                     <td>
                         <div class="btn-group float-end" role="group" aria-label="">
-                            <a href="" type="button" class="ri btn btn-outline-primary btn-sm"><svg class="bi"><use xlink:href="#editar"/></svg> EDITAR</a>
-                            <a href="" type="button" class="btn btn-outline-danger btn-sm"><svg class="bi"><use xlink:href="#excluir"/></svg> EXCLUIR</a>
+                            <a href="{{ route('admin.escolas.edit', ['id'=>$escola->id]) }}" type="button" class="ri btn btn-outline-primary btn-sm"><svg class="bi"><use xlink:href="#editar"/></svg> EDITAR</a>
+                            <a href="{{ route('admin.escolas.delete', ['id'=>$escola->id]) }}" type="button" class="btn btn-outline-danger btn-sm"><svg class="bi"><use xlink:href="#excluir"/></svg> EXCLUIR</a>
                         </div>
                     </td>
                 </tr>
@@ -51,58 +57,3 @@
 
 
 
-@section('scripts')
-
-    <script>
-        $(function() {
-            $( "#cidade" ).autocomplete({
-                minLength: 2,
-                source: function( request, response ) {
-                    $.ajax({
-                        url: '{{route('cidades.autocomplete')}}',
-                        dataType: "json",
-                        data: {
-                            busca: $('#cidade').val()
-                        },
-                        success: function(data) {
-                            response(data);
-                        }
-                    });
-                },
-                select: function (event, ui) {
-                    //console.log("select: "+ui.item.value);
-                    $('#cidade').val(ui.item.value);
-                    $('#cep').val(ui.item.cep).mask('99999-999');
-                    $('#cidade_id').val(ui.item.id);
-                    $('#estado_id').val(ui.item.estado_id);
-                    return false;
-                },
-                focus: function(event, ui){
-                    //console.log("focus: "+ui.item.value);
-                    $("#cidade" ).val(ui.item.value);
-                    $("#cep" ).val(ui.item.cep).mask('99999-999');
-                    $('#cidade_id').val(ui.item.id);
-                    $('#estado_id').val(ui.item.estado_id);
-                    return false;
-                },
-            });
-        });
-
-        $("#cpf").mask("999.999.999-99");
-        $("#nascimento").mask("99/99/9999");
-        $("#assoc_data").mask("99/99/9999");
-        $("#assoc_vencimento").mask("99/99/9999");
-        $("#cr_vencimento").mask("99/99/9999");
-        $('#telefone').mask('(99) 9999-9999');
-        $('#whatsapp').mask('(99) 9 9999-9999');
-        $('#cep').mask('99999-999');
-
-        /*setTimeout(
-            function() {
-                $('#password').val('');
-            },
-            500
-        );*/
-    </script>
-
-@endsection

@@ -16,6 +16,9 @@
     </div>
 
     <div class="table-responsive small">
+
+        @include('admin._partials.message')
+
         <table class="table table-striped table-sm">
             <thead>
             <tr>

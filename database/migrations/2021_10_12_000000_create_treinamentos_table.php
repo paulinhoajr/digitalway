@@ -20,7 +20,6 @@ return new class extends Migration
                 ->nullable()
                 ->comment("pode nao ser ligado a uma escola");
             $table->string('nome');
-            $table->string('qrcode')->comment('liberar certificado ?');
             $table->longText('descricao');
             $table->integer('situacao');
             $table->rememberToken();

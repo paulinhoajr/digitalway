@@ -15,7 +15,10 @@
         </div>--}}
     </div>
     <div class="">
-        <form action="" method="post">
+
+        @include('admin._partials.message')
+
+        <form action="{{ route('admin.usuarios.update') }}" method="post">
             @csrf
             <input type="hidden" name="id" value="{{ $usuario->id }}">
             <div class="row g-3">
@@ -34,11 +37,11 @@
 
                 <div class="col-sm-3">
                     <label for="password" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="password" name="password" value="" required>
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <div class="col-sm-3">
                     <label for="confirm_password" class="form-label">Repita Senha</label>
-                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" value="">
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password">
                 </div>
                 <div class="col-sm-3">
                     <label for="role" class="form-label">Regra</label>
@@ -59,7 +62,7 @@
 
             <hr class="my-4">
 
-            <button class="float-end btn btn-primary btn-lg" type="submit">Alterar Usuário</button>
+            <button class="float-end btn btn-primary" type="submit">Alterar Usuário</button>
         </form>
     </div>
 @endsection

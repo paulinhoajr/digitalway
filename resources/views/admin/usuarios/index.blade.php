@@ -17,6 +17,8 @@
 
     <div class="table-responsive small">
 
+        @include('admin._partials.message')
+
         <a href="{{ route('admin.usuarios.create') }}" type="button" class="float-end ri btn btn-outline-secondary btn-sm">
             <svg class="bi"><use xlink:href="#usuario"/></svg> NOVO USUÁRIO</a>
 

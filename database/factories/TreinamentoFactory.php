@@ -18,7 +18,6 @@ class TreinamentoFactory extends Factory
             'cidade_id' => $var,
             'escola_id' => $rand==0?null:$rand,
             'nome' => fake()->name(),
-            'qrcode' => fake()->url(),
             'descricao' => fake()->text(),
             'situacao' => rand(0, 1),
         ];

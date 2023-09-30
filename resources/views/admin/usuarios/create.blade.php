@@ -15,7 +15,10 @@
         </div>--}}
     </div>
     <div class="">
-        <form action="" method="post">
+
+        @include('admin._partials.message')
+
+        <form action="{{ route('admin.usuarios.store') }}" method="post">
             @csrf
             <div class="row g-3">
                 <div class="col-sm-4">
@@ -58,7 +61,7 @@
 
             <hr class="my-4">
 
-            <button class="float-end btn btn-primary btn-lg" type="submit">Inserir Usuário</button>
+            <button class="float-end btn btn-primary" type="submit">Inserir Usuário</button>
         </form>
     </div>
 @endsection

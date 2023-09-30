@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\GeralController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [UsuarioController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [UsuarioController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::controller(GeralController::class)
+    ->group(function (){
+        Route::get('autocomplete', 'autocomplete')->name('cidades.autocomplete');
+        Route::get('autocompleteEscola', 'autocompleteEscola')->name('escolas.autocompleteEscola');
+    });
 
 require __DIR__.'/auth.php';
