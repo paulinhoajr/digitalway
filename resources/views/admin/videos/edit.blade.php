@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Novo Treinamento</h1>
+        <h1 class="h2">Alterar {{ $video->nome }}</h1>
         {{--<div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
                 <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -18,34 +18,39 @@
 
         @include('admin._partials.message')
 
-        <form action="{{ route('admin.treinamentos.store') }}" method="post">
+        <form action="{{ route('admin.videos.update') }}" method="post">
             @csrf
+            <input type="hidden" name="id" value="{{ $video->id }}">
             <div class="row g-3">
                 <div class="col-sm-9">
                     <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do treinamento" value="{{old('nome')}}" required>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do vídeo" value="{{ $video->nome }}" required>
                 </div>
                 <div class="col-sm-3">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-select" id="situacao" name="situacao">
-                        <option {{ old('situacao' ? (old('situacao') == 1 ? "selected" : "") : "") }} value="1">Ativo</option>
-                        <option {{ old('situacao' ? (old('situacao') == 0 ? "selected" : "") : "") }} value="0">Inativo</option>
+                        <option {{ $video->situacao == 1 ? "selected" : "" }} value="1">Ativo</option>
+                        <option {{ $video->situacao == 0 ? "selected" : "" }} value="0">Inativo</option>
                     </select>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <label class="form-label" for="cidade">Buscar cidade - Selecione na lista</label>
-                    <input type="text" class="form-control"  id="cidade" name="cidade"  value="{{old('cidade')}}"  placeholder="Cidade - UF">
-                    <input type="hidden" name="cidade_id" id="cidade_id" value="{{old('cidade_id')}}">
+                    <input type="text" class="form-control"  id="cidade" name="cidade"  value="{{ $video->cidade ? $video->cidade->nome. " - " .$video->cidade->uf : "" }}"  placeholder="Cidade - UF">
+                    <input type="hidden" name="cidade_id" id="cidade_id" value="{{ $video->cidade_id }}">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <label class="form-label" for="escola">Buscar escola - Selecione na lista</label>
-                    <input type="text" class="form-control"  id="escola" name="escola"  value="{{old('escola')}}"  placeholder="Escola">
-                    <input type="hidden" name="escola_id" id="escola_id" value="{{old('escola_id')}}">
+                    <input type="text" class="form-control"  id="escola" name="escola"  value="{{ $video->escola->nome }}"  placeholder="Escola">
+                    <input type="hidden" name="escola_id" id="escola_id" value="{{ $video->escola_id }}">
+                </div>
+                <div class="col-sm-4">
+                    <label for="url" class="form-label">Url Youtube</label>
+                    <input type="text" class="form-control" id="url" name="url" placeholder="URL do vídeo" value="{{ $video->url }}" required>
                 </div>
 
                 <div class="col-sm-12">
                     <label class="form-label" for="descricao">Descrição</label>
-                    <textarea name="descricao" class="form-control">{{ old('descricao') }}</textarea>
+                    <textarea name="descricao" class="form-control">{{ $video->descricao }}</textarea>
                 </div>
 
 
@@ -53,7 +58,7 @@
 
             <hr class="my-4">
 
-            <button class="float-end btn btn-primary" type="submit">Inserir Treinamento</button>
+            <button class="float-end btn btn-primary" type="submit">Alterar Vídeo</button>
         </form>
     </div>
 @endsection

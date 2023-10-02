@@ -38,6 +38,8 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
             ->name('admin.')
             ->group(function () {
                 Route::get('/', 'index')->name('esperas.index');
+                Route::get('/importar', 'importar')->name('esperas.importar');
+                Route::post('/store', 'store')->name('esperas.store');
             });
     });
 
@@ -53,6 +55,8 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
                 Route::post('/update', 'update')->name('escolas.update');
                 Route::get('/delete/{id}', 'delete')->name('escolas.delete');
                 Route::get('/destroy/{id}', 'destroy')->name('escolas.destroy');
+                Route::get('/csv/{id}', 'csv')->name('escolas.csv');
+                Route::post('/gerar', 'gerar')->name('escolas.gerar');
             });
     });
 
@@ -84,6 +88,13 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
             ->name('admin.')
             ->group(function () {
                 Route::get('/', 'index')->name('videos.index');
+                Route::get('/create', 'create')->name('videos.create');
+                Route::post('/store', 'store')->name('videos.store');
+                Route::get('/show/{id}', 'show')->name('videos.show');
+                Route::get('/edit/{id}', 'edit')->name('videos.edit');
+                Route::post('/update', 'update')->name('videos.update');
+                Route::get('/delete/{id}', 'delete')->name('videos.delete');
+                Route::get('/destroy/{id}', 'destroy')->name('videos.destroy');
             });
     });
 
@@ -92,6 +103,13 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
             ->name('admin.')
             ->group(function () {
                 Route::get('/', 'index')->name('documentos.index');
+                Route::get('/create', 'create')->name('documentos.create');
+                Route::post('/store', 'store')->name('documentos.store');
+                Route::get('/show/{id}', 'show')->name('documentos.show');
+                Route::get('/edit/{id}', 'edit')->name('documentos.edit');
+                Route::post('/update', 'update')->name('documentos.update');
+                Route::get('/delete/{id}', 'delete')->name('documentos.delete');
+                Route::get('/destroy/{id}', 'destroy')->name('documentos.destroy');
             });
     });
 

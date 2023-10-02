@@ -52,8 +52,8 @@
                 <div class="col-sm-3">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-select" id="situacao" name="situacao">
-                        <option value="1">Ativo</option>
-                        <option value="0">Inativo</option>
+                        <option {{ old('situacao' ? (old('situacao') == 1 ? "selected" : "") : "") }} value="1">Ativo</option>
+                        <option {{ old('situacao' ? (old('situacao') == 0 ? "selected" : "") : "") }} value="0">Inativo</option>
                     </select>
                 </div>
 

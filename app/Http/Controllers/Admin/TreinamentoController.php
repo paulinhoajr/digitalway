@@ -20,7 +20,7 @@ class TreinamentoController extends Controller
 {
     public function index(): View
     {
-        $treinamentos = Treinamento::paginate(config('app.paginate'));
+        $treinamentos = Treinamento::latest()->paginate(config('app.paginate'));
 
         return view('admin.treinamentos.index', [
             'treinamentos' => $treinamentos

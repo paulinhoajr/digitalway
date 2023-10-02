@@ -19,6 +19,9 @@
 
         @include('admin._partials.message')
 
+        <a href="{{ route('admin.videos.create') }}" type="button" class="float-end ri btn btn-outline-secondary btn-sm">
+            <svg class="bi"><use xlink:href="#icon_video"/></svg> NOVO VÍDEO</a>
+
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -50,8 +53,8 @@
                     <td>{{ dateTimeUsParaDateTimeBr($video->created_at) }}</td>
                     <td>
                         <div class="btn-group float-end" role="group" aria-label="">
-                            <a href="" type="button" class="ri btn btn-outline-primary btn-sm"><svg class="bi"><use xlink:href="#icon_editar"/></svg> EDITAR</a>
-                            <a href="" type="button" class="btn btn-outline-danger btn-sm"><svg class="bi"><use xlink:href="#icon_excluir"/></svg> EXCLUIR</a>
+                            <a href="{{ route('admin.videos.edit', ['id'=>$video->id]) }}" type="button" class="ri btn btn-outline-primary btn-sm"><svg class="bi"><use xlink:href="#icon_editar"/></svg> EDITAR</a>
+                            <a href="{{ route('admin.videos.delete', ['id'=>$video->id]) }}" type="button" class="btn btn-outline-danger btn-sm"><svg class="bi"><use xlink:href="#icon_excluir"/></svg> EXCLUIR</a>
                         </div>
                     </td>
                 </tr>

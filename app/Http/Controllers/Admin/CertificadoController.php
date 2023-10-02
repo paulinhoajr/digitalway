@@ -10,7 +10,7 @@ class CertificadoController extends Controller
 {
     public function index(): View
     {
-        $certificados = Certificado::paginate(config('app.paginate'));
+        $certificados = Certificado::latest()->paginate(config('app.paginate'));
 
         return view('admin.certificados.index', [
             'certificados' => $certificados

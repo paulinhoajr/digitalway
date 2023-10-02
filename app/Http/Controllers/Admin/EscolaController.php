@@ -3,20 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\EscolaCSVRequest;
 use App\Http\Requests\Admin\EscolaStoreRequest;
 use App\Http\Requests\Admin\EscolaUpdateRequest;
 use App\Models\Escola;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use League\Csv\Exception;
+use League\Csv\Reader;
+use League\Csv\Writer;
 
 class EscolaController extends Controller
 {
     public function index(): View
     {
-        $escolas = Escola::paginate(config('app.paginate'));
+        $escolas = Escola::latest()->paginate(config('app.paginate'));
 
         return view('admin.escolas.index', [
             'escolas' => $escolas
@@ -123,5 +130,41 @@ class EscolaController extends Controller
 
     }
 
+    public function csv($id): View
+    {
+        $escola = Escola::where('id', $id)->first();
+
+        return view('admin.escolas.csv', [
+            'escola' => $escola
+        ]);
+    }
+
+    public function gerar(EscolaCSVRequest $request)
+    {
+        $escola = Escola::where('id', $request->id)->first();
+
+        try {
+
+            $caminho = "storage/csv/".$escola->nome."_".$request->nome.".csv";
+
+            $writer = Writer::createFromPath($caminho, 'w');
+            //$writer->insertAll($records);
+            $writer->setDelimiter(';');
+
+            $writer->insertOne(['Numero','Nome', 'CPF', 'Email', 'UID']);
+
+            for ($i=1;$i<=$request->linhas;$i++)
+            {
+                //$writer->insertOne([$i, '', '', '', $escola->id]);
+                $writer->insertOne([$i, fake()->name, only_numbers(fake()->unique()->phoneNumber),fake()->unique()->email, $escola->id]);
+            }
+
+            return response()->download($caminho)->deleteFileAfterSend(true);
+
+        } catch (CannotInsertRecord $e) {
+            $e->getRecord();
+        }
+
+    }
 
 }

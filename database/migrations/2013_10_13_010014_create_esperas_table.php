@@ -13,6 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('escola_id');
             $table->unsignedBigInteger('cpf');
             $table->string('nome');
+            $table->string('email')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

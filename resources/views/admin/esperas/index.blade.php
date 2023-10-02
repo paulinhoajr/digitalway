@@ -19,6 +19,9 @@
 
         @include('admin._partials.message')
 
+        <a href="{{ route('admin.esperas.importar') }}" type="button" class="float-end ri btn btn-outline-success btn-sm">
+            <svg class="bi"><use xlink:href="#icon_csv"/></svg> IMPORTAR CSV</a>
+
         <table class="table table-striped table-sm">
             <thead>
                 <tr>

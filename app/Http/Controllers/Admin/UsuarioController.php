@@ -19,6 +19,7 @@ class UsuarioController extends Controller
     public function index(): View
     {
         $usuarios = Usuario::where('role', "!=","ROLE_SUPERADMIN")
+            ->latest()
             ->paginate(config('app.paginate'));
 
         return view('admin.usuarios.index', [
