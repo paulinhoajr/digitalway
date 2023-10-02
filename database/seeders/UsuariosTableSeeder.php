@@ -28,5 +28,16 @@ class UsuariosTableSeeder extends Seeder
         $usuario->role = "ROLE_ADMIN";
         $usuario->situacao = 1;
         $usuario->save();
+
+        $usuario = new Usuario();
+        $usuario->nome = "Digital";
+        $usuario->email = "atendimento@digitalw.com.br ";
+        $usuario->cpf = "000000000";
+        $usuario->password = Hash::make('digital@2023');
+        $usuario->role = "ROLE_ADMIN";
+        $usuario->situacao = 1;
+        $usuario->save();
+
+
     }
 }
