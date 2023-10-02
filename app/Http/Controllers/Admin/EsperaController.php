@@ -76,7 +76,7 @@ class EsperaController extends Controller
                 $espera->save();
             }
 
-            Storage::delete("storage/".$caminho);
+            Storage::delete($caminho);
 
             DB::commit();
 
@@ -84,6 +84,7 @@ class EsperaController extends Controller
 
         }catch (\Exception $e){
 
+            DB::rollBack();
             return back()->with('message_fail', $e->getMessage());
 
         }
