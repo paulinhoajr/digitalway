@@ -17,7 +17,7 @@
 
     <div class="">
 
-        @include('admin._partials.message')
+        @include('_partials.message')
 
         <p>Confirma que gostaria de excluir a escola {{$escola->nome}}?</p>
         <a href="{{ route('admin.escolas.destroy', ['id'=>$escola->id]) }}" type="button" class="float-end btn btn-outline-danger btn-sm">

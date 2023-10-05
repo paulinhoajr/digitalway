@@ -17,7 +17,7 @@
 
     <div class="table-responsive small">
 
-        @include('admin._partials.message')
+        @include('_partials.message')
 
         <table class="table table-striped table-sm">
             <thead>
@@ -46,6 +46,6 @@
             @endforeach
             </tbody>
         </table>
-        {{ $certificados->onEachSide(1)->links('admin._partials.pagination') }}
+        {{ $certificados->onEachSide(1)->links('_partials.pagination') }}
     </div>
 @endsection

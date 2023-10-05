@@ -16,7 +16,7 @@
     </div>
     <div class="">
 
-        @include('admin._partials.message')
+        @include('_partials.message')
 
         <form action="{{ route('admin.escolas.store') }}" method="post">
             @csrf

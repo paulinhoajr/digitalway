@@ -17,7 +17,7 @@
 
     <div class="">
 
-        @include('admin._partials.message')
+        @include('_partials.message')
 
         <p>Confirma que gostaria de excluir o vídeo {{$video->nome}}?</p>
         <a href="{{ route('admin.videos.destroy', ['id'=>$video->id]) }}" type="button" class="float-end btn btn-outline-danger btn-sm">

@@ -17,7 +17,7 @@
 
     <div class="table-responsive small">
 
-        @include('admin._partials.message')
+        @include('_partials.message')
 
         <a href="{{ route('admin.documentos.create') }}" type="button" class="float-end ri btn btn-outline-secondary btn-sm">
             <svg class="bi"><use xlink:href="#icon_pdf"/></svg> NOVO DOCUMENTO</a>
@@ -61,6 +61,6 @@
             @endforeach
             </tbody>
         </table>
-        {{ $documentos->onEachSide(1)->links('admin._partials.pagination') }}
+        {{ $documentos->onEachSide(1)->links('_partials.pagination') }}
     </div>
 @endsection

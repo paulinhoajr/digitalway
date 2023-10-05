@@ -17,7 +17,7 @@
 
     <div class="table-responsive small">
 
-        @include('admin._partials.message')
+        @include('_partials.message')
 
         <a href="{{ route('admin.treinamentos.create') }}" type="button" class="float-end ri btn btn-outline-secondary btn-sm">
             <svg class="bi"><use xlink:href="#icon_escola"/></svg> NOVO TREINAMENTO</a>
@@ -59,6 +59,6 @@
             @endforeach
             </tbody>
         </table>
-        {{ $treinamentos->onEachSide(1)->links('admin._partials.pagination') }}
+        {{ $treinamentos->onEachSide(1)->links('_partials.pagination') }}
     </div>
 @endsection

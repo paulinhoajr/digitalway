@@ -6,7 +6,6 @@
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.118.2">
 
-
 <!-- Favicons -->
 <link rel="apple-touch-icon" href="{{asset('images/favicons/apple-touch-icon.png')}}" sizes="180x180">
 <link rel="icon" href="{{asset('images/favicons/favicon-32x32.png')}}" sizes="32x32" type="image/png">

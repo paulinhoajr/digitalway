@@ -13,7 +13,8 @@ class Espera extends Model
 
     public $timestamps = true;
 
-    public function escola(){
+    public function escola()
+    {
         return $this->belongsTo(Escola::class);
     }
 

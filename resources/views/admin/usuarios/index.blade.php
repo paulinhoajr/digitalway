@@ -17,7 +17,7 @@
 
     <div class="table-responsive small">
 
-        @include('admin._partials.message')
+        @include('_partials.message')
 
         <a href="{{ route('admin.usuarios.create') }}" type="button" class="float-end ri btn btn-outline-secondary btn-sm">
             <svg class="bi"><use xlink:href="#icon_usuario"/></svg> NOVO USUÁRIO</a>
@@ -62,6 +62,6 @@
             @endforeach
             </tbody>
         </table>
-        {{ $usuarios->onEachSide(1)->links('admin._partials.pagination') }}
+        {{ $usuarios->onEachSide(1)->links('_partials.pagination') }}
     </div>
 @endsection

@@ -17,7 +17,7 @@
 
     <div class="table-responsive small">
 
-        @include('admin._partials.message')
+        @include('_partials.message')
 
         <a href="{{ route('admin.escolas.create') }}" type="button" class="float-end ri btn btn-outline-secondary btn-sm">
             <svg class="bi"><use xlink:href="#icon_escola"/></svg> NOVA ESCOLA</a>
@@ -52,7 +52,7 @@
             @endforeach
             </tbody>
         </table>
-        {{ $escolas->onEachSide(1)->links('admin._partials.pagination') }}
+        {{ $escolas->onEachSide(1)->links('_partials.pagination') }}
     </div>
 @endsection
 

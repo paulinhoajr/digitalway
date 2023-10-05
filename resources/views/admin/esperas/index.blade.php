@@ -17,7 +17,7 @@
 
     <div class="table-responsive small">
 
-        @include('admin._partials.message')
+        @include('_partials.message')
 
         <a href="{{ route('admin.esperas.importar') }}" type="button" class="float-end ri btn btn-outline-success btn-sm">
             <svg class="bi"><use xlink:href="#icon_csv"/></svg> IMPORTAR CSV</a>
@@ -51,6 +51,6 @@
             @endforeach
             </tbody>
         </table>
-        {{ $esperas->onEachSide(1)->links('admin._partials.pagination') }}
+        {{ $esperas->onEachSide(1)->links('_partials.pagination') }}
     </div>
 @endsection
