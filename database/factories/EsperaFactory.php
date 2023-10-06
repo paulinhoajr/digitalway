@@ -18,6 +18,7 @@ class EsperaFactory extends Factory
         return [
             'escola_id' => rand(1, 30),
             'nome' => fake()->name(),
+            'email' => fake()->email(),
             'cpf' => fake()->unique()->imei(),
         ];
     }

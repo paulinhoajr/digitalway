@@ -12,11 +12,12 @@ class UsuariosEscolas extends Model
 
     public $timestamps = true;
 
-    public function usuario(){
-        return $this->belongsTo(Usuario::class);
+    public function usuarios(){
+        return $this->hasMany(Usuario::class);
     }
 
-    public function escola(){
-        return $this->belongsTo(Escola::class);
+    public function escolas(){
+        return $this->belongsToMany(Escola::class);
     }
+
 }

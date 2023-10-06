@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Site;
 
 use App\Models\Usuario;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
 class UsuarioStoreRequest extends FormRequest
@@ -33,6 +35,6 @@ class UsuarioStoreRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-
+        //dd($this);
     }
 }

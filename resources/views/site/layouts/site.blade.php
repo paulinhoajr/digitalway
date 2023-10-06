@@ -6,10 +6,7 @@
         @include('site._partials.head')
 
         <style>
-            .footer {
-                position: absolute;
-                bottom: 0;
-            }
+
         </style>
 
         @yield('head')
@@ -17,22 +14,21 @@
     <body>
         @include('_partials.icons')
 
-        <main>
-            {{--<h1 class="visually-hidden">Headers examples</h1>--}}
+        <div class="container">
+        @include('site._partials.header')
 
-            <div class="container">
-                @include('site._partials.header')
+        <main style="bottom: 0;">
+            {{--<h1 class="visually-hidden">Headers examples</h1>--}}
 
                 {{--<div class="b-example-divider"></div>--}}
 
                 @yield('content')
 
-
-                @include('site._partials.footer')
-
-            </div>
-
         </main>
+
+        @include('site._partials.footer')
+
+        </div>
 
         @include('site._partials.scripts')
 

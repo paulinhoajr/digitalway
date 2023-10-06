@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Site;
 
 use App\Models\Usuario;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
-class UsuarioStoreRequest extends FormRequest
+class UsuarioUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +27,15 @@ class UsuarioStoreRequest extends FormRequest
     {
         return [
             'nome' => ['required', 'string', 'max:255'],
-            'cpf' => ['required', 'cpf', 'max:14', 'unique:'.Usuario::class],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Usuario::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'cpf' => ['nullable', 'cpf', 'max:14', Rule::unique(Usuario::class)->ignore($this->id)->withoutTrashed()],
+            'email' => ['required', 'email', 'max:255', Rule::unique(Usuario::class)->ignore($this->id)->withoutTrashed()],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+            'password_confirmation' => 'required_with:password'
         ];
     }
 
     protected function prepareForValidation()
     {
-
+        //dd($this);
     }
 }

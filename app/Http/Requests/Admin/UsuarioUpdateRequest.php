@@ -27,7 +27,7 @@ class UsuarioUpdateRequest extends FormRequest
     {
         return [
             'nome' => ['required', 'string', 'max:255'],
-            'cpf' => ['nullable', 'cpf', 'max:14'],
+            'cpf' => ['nullable', 'cpf', 'max:14', Rule::unique(Usuario::class)->ignore($this->id)->withoutTrashed()],
             'email' => ['required', 'email', 'max:255', Rule::unique(Usuario::class)->ignore($this->id)->withoutTrashed()],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
             'password_confirmation' => 'required_with:password'

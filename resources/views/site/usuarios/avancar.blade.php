@@ -1,14 +1,14 @@
-@extends('site.layouts.site')
+@extends('site.layouts.guest')
 
 @section('content')
 
-    <div class="row mb-5">
+    <div class="row mb-5 mt-5">
 
         <div class="col-md-6 offset-md-3">
 
             @include('_partials.message')
 
-            <h2 class="mt-5">Insitra o CPF</h2>
+            <h2 class="mt-5">Insira o CPF</h2>
 
             <form method="POST" action="{{ route('site.usuarios.avancar.post') }}" class="mt-3">
                 @csrf
@@ -20,6 +20,7 @@
                 <button class="btn btn-primary w-100 py-2 mt-3" type="submit">Avançar</button>
             </form>
 
+            @include('_partials.back', ['rota' => route('login')])
         </div>
 
     </div>

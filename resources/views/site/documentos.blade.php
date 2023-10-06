@@ -6,7 +6,7 @@
 
         <div class="col-md-12">
 
-            <h2 class="mt-5">Inicial</h2>
+            <h2 class="mt-5">Documentos</h2>
 
         </div>
 
