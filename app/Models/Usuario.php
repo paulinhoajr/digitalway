@@ -26,14 +26,12 @@ class Usuario extends Authenticatable
         'password' => 'hashed',
     ];
 
-    /*public function escolas(){
-        return $this->hasMany(UsuariosEscolas::class);
-    }*/
-
-    /*public function escolas()
+    public function escolas()
     {
-        return $this->belongsToMany(Escola::class, 'usuarios_escolas');
-    }*/
+        return $this->belongsToMany(Escola::class, 'usuarios_escolas',
+            'usuario_id', 'escola_id');
+    }
+
 
     public function isSuperAdmin()
     {

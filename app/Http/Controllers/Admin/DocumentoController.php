@@ -39,7 +39,7 @@ class DocumentoController extends Controller
 
             $documento = new Documento();
             $documento->nome = $request->nome;
-            $documento->cidade_id = $request->cidade_id ?? null;
+            $documento->cidade_id = $request->cidade_id;
             $documento->escola_id = $request->escola_id ?? null;
             $documento->descricao = $request->descricao;
             $documento->situacao = $request->situacao;
@@ -94,7 +94,7 @@ class DocumentoController extends Controller
                 ->first();
 
             $documento->nome = $request->nome;
-            $documento->cidade_id = $request->cidade_id ?? null;
+            $documento->cidade_id = $request->cidade_id;
             $documento->escola_id = $request->escola_id ?? null;
             $documento->descricao = $request->descricao;
             $documento->situacao = $request->situacao;

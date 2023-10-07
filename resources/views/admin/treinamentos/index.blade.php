@@ -51,6 +51,8 @@
                     <td>{{ dateTimeUsParaDateTimeBr($treinamento->created_at) }}</td>
                     <td>
                         <div class="btn-group float-end" role="group" aria-label="">
+                            {{ //todo parei aqui }}
+                            <a href="" type="button" class="ri btn btn-outline-success btn-sm"><svg class="bi"><use xlink:href="#icon_qrcode"/></svg> QRCODE</a>
                             <a href="{{ route('admin.treinamentos.edit', ['id'=>$treinamento->id]) }}" type="button" class="ri btn btn-outline-primary btn-sm"><svg class="bi"><use xlink:href="#icon_editar"/></svg> EDITAR</a>
                             <a href="{{ route('admin.treinamentos.delete', ['id'=>$treinamento->id]) }}" type="button" class="btn btn-outline-danger btn-sm"><svg class="bi"><use xlink:href="#icon_excluir"/></svg> EXCLUIR</a>
                         </div>

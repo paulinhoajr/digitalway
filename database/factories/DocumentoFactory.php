@@ -11,7 +11,7 @@ class DocumentoFactory extends Factory
     public function definition(): array
     {
         $var = rand(4607, 5103);
-        if ($var > 5050) $var = null;
+        //if ($var > 5050) $var = null;
         $rand = rand(null, 30);
 
         return [

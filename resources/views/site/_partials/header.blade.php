@@ -11,17 +11,18 @@
                 <a href="{{ route('site.index') }}" class="nav-link {{ setActive('home') }}">Home</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('site.certificados') }}" class="nav-link {{ setActive('certificados') }}">Certificados</a>
+                <a href="{{ route('site.usuarios.escolas') }}" class="nav-link {{ setActive('escolas') }}">Escolas</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('site.escolas') }}" class="nav-link {{ setActive('escolas') }}">Escolas</a>
+                <a href="{{ route('site.usuarios.certificados') }}" class="nav-link {{ setActive('certificados') }}">Certificados</a>
+            </li>
+
+{{--            <li class="nav-item">
+                <a href="{{ route('site.usuarios.documentos') }}" class="nav-link {{ setActive('documentos') }}">Documentos</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('site.documentos') }}" class="nav-link {{ setActive('documentos') }}">Documentos</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('site.videos') }}" class="nav-link {{ setActive('videos') }}">Vídeos</a>
-            </li>
+                <a href="{{ route('site.usuarios.videos') }}" class="nav-link {{ setActive('videos') }}">Vídeos</a>
+            </li>--}}
             <li class="nav-item">
                 <a href="{{ route('site.usuarios.edit') }}" class="nav-link {{ setActive('usuarios/edit') }}">Meus Dados</a>
             </li>

@@ -35,7 +35,8 @@
                 </div>
                 <div class="col-sm-4">
                     <label class="form-label" for="cidade">Buscar cidade - Selecione na lista</label>
-                    <input type="text" class="form-control"  id="cidade" name="cidade"  value="{{ $video->cidade ? $video->cidade->nome. " - " .$video->cidade->uf : "" }}"  placeholder="Cidade - UF">
+                    <input type="text" class="form-control"  id="cidade" name="cidade"
+                           value="{{ $video->cidade ? $video->cidade->nome. " - " .$video->cidade->uf : "" }}"  placeholder="Cidade - UF" required>
                     <input type="hidden" name="cidade_id" id="cidade_id" value="{{ $video->cidade_id }}">
                 </div>
                 <div class="col-sm-4">
@@ -44,7 +45,7 @@
                     <input type="hidden" name="escola_id" id="escola_id" value="{{ $video->escola_id }}">
                 </div>
                 <div class="col-sm-4">
-                    <label for="url" class="form-label">Url Youtube</label>
+                    <label for="url" class="form-label">Url (http://www.youtube.com/embed/VIDEO_ID)</label>
                     <input type="text" class="form-control" id="url" name="url" placeholder="URL do vídeo" value="{{ $video->url }}" required>
                 </div>
 

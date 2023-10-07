@@ -37,7 +37,7 @@ class VideoController extends Controller
 
             $video = new Video();
             $video->nome = $request->nome;
-            $video->cidade_id = $request->cidade_id ?? null;
+            $video->cidade_id = $request->cidade_id;
             $video->escola_id = $request->escola_id ?? null;
             $video->descricao = $request->descricao;
             $video->url = $request->url;
@@ -80,7 +80,7 @@ class VideoController extends Controller
                 ->first();
 
             $video->nome = $request->nome;
-            $video->cidade_id = $request->cidade_id ?? null;
+            $video->cidade_id = $request->cidade_id;
             $video->escola_id = $request->escola_id ?? null;
             $video->descricao = $request->descricao;
             $video->url = $request->url;

@@ -23,7 +23,7 @@ class VideoStoreRequest extends FormRequest
     {
         return [
             'escola_id' => ['nullable'],
-            'cidade_id' => ['nullable'],
+            'cidade_id' => ['required'],
             'nome' => ['required'],
             'url' => ['nullable'],
             'descricao' => ['required'],

@@ -13,10 +13,9 @@ Route::controller(HomeController::class)
         });
 
         Route::get('/home', 'index')->name('index');
-        Route::get('/videos', 'videos')->name('videos');
-        Route::get('/documentos', 'documentos')->name('documentos');
-        Route::get('/certificados', 'certificados')->name('certificados');
-        Route::get('/escolas', 'escolas')->name('escolas');
+
+        //Route::get('/certificados', 'certificados')->name('certificados');
+        //Route::get('/escolas', 'escolas')->name('escolas');
     });
 
 
@@ -27,6 +26,14 @@ Route::group(['prefix' => '/usuarios', 'where'=>['id'=>'[0-9]+']], function () {
         ->name('site.usuarios.')
         ->group(function () {
             Route::get('/', 'index')->name('index');
+
+            Route::get('/edit', 'edit')->name('edit');
+            Route::post('/update', 'update')->name('update');
+
+            Route::get('/certificados', 'certificados')->name('certificados');
+            Route::get('/escolas', 'escolas')->name('escolas');
+            //Route::get('/videos', 'videos')->name('videos');
+            //Route::get('/documentos', 'documentos')->name('documentos');
         });
 
     Route::controller(UsuarioController::class)
@@ -36,12 +43,11 @@ Route::group(['prefix' => '/usuarios', 'where'=>['id'=>'[0-9]+']], function () {
             Route::get('/create/{id}', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
 
-            Route::get('/edit', 'edit')->name('edit');
-            Route::post('/update', 'update')->name('update');
-
             Route::get('/avancar', 'avancar')->name('avancar');
             Route::post('/avancar', 'avancar_post')->name('avancar.post');
 
+            Route::get('/qrcode/{id}', 'qrcode')->name('qrcode');
+            Route::post('/qrcode', 'qrcode_post')->name('qrcode.post');
 
         });
 

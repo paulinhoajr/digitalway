@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cidade_id')
-                ->nullable()
-                ->comment("pode nao ser ligado a uma cidade");
+            $table->unsignedBigInteger('cidade_id');
             $table->unsignedBigInteger('escola_id')
                 ->nullable()
                 ->comment("pode nao ser ligado a uma escola");

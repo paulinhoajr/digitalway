@@ -13,6 +13,7 @@ use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
+
     Route::get('register', [RegisteredUsuarioController::class, 'create'])
                 ->name('register');
 
