@@ -155,8 +155,8 @@ class EscolaController extends Controller
 
             for ($i=1;$i<=$request->linhas;$i++)
             {
-                //$writer->insertOne([$i, '', '', '', $escola->id]);
-                $writer->insertOne([$i, fake()->name, only_numbers(fake()->unique()->phoneNumber),fake()->unique()->email, $escola->id]);
+                $writer->insertOne([$i, '', '', '', $escola->id]);
+                //$writer->insertOne([$i, fake()->name, only_numbers(fake()->unique()->phoneNumber),fake()->unique()->email, $escola->id]);
             }
 
             return response()->download($caminho)->deleteFileAfterSend(true);
