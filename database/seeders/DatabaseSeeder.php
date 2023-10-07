@@ -18,14 +18,14 @@ class DatabaseSeeder extends Seeder
             UsuariosTableSeeder::class,
         ]);
 
-        \App\Models\Escola::factory(30)->create();
+        /*\App\Models\Escola::factory(30)->create();
         \App\Models\Espera::factory(30)->create();
         \App\Models\Usuario::factory(250)->create();
         \App\Models\Treinamento::factory(30)->create();
         \App\Models\Certificado::factory(250)->create();
         \App\Models\UsuariosEscolas::factory(700)->create();
         \App\Models\Video::factory(50)->create();
-        \App\Models\Documento::factory(50)->create();
+        \App\Models\Documento::factory(50)->create();*/
 
     }
 }
