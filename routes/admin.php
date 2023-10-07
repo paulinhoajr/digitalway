@@ -72,6 +72,7 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
                 Route::post('/update', 'update')->name('treinamentos.update');
                 Route::get('/delete/{id}', 'delete')->name('treinamentos.delete');
                 Route::get('/destroy/{id}', 'destroy')->name('treinamentos.destroy');
+                Route::get('/qrcode/{id}', 'qrcode')->name('treinamentos.qrcode');
             });
     });
 

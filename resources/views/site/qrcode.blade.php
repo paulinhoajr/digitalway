@@ -8,11 +8,11 @@
 
             @include('_partials.message')
 
-            <h2 class="mt-5">Insira o CPF</h2>
+            <h2 class="mt-5">Insira o CPF para gerar o certificado</h2>
 
             <form method="POST" action="{{ route('site.usuarios.qrcode.post') }}" class="mt-3">
                 @csrf
-                <input type="hidden" name="treinamento_id" value="{{ $treinamento->id }}">
+                <input type="hidden" name="id" value="{{ $treinamento->id }}">
                 <div class="form-floating">
                     <input name="cpf" type="text" class="form-control" id="cpf" placeholder="000.000.000-00">
                     <label for="cpf">CPF</label>

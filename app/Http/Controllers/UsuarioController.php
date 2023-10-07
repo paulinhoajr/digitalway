@@ -47,8 +47,9 @@ class UsuarioController extends Controller
 
     public function qrcode_post(QRCODERequest $request): RedirectResponse
     {
-
-        $usuario = Usuario::where('cpf', only_numbers($request->cpf))->first();
+        $usuario = Usuario::where('cpf', only_numbers($request->cpf))
+            ->where('situacao', 1)
+            ->first();
         if (!$usuario){
             return back()->with("message_alert", "CPF não encontrado.");
         }
@@ -57,29 +58,42 @@ class UsuarioController extends Controller
         $i=1;
         foreach ($usuario->escolas as $escola){
 
-            echo $escola->nome."<br>";
-
             $treinamento = Treinamento::where('id', $request->id)
-                ->where('escola_id', $escola->id)
+                ->where(function($query) use ($escola) {
+                    $query->where('escola_id', $escola->id)
+                        ->orWhereNull('escola_id');
+                })
                 ->first();
 
             if ($treinamento){
-                echo " - " .$treinamento->nome."<br>";
-                continue;
+                break;
             }
 
             if( $total == $i ) {
-                dd('não encontrado.');
+                return back()->with("message_alert",
+                    "Este treinamento não tem ligação com nenhuma escola em que você faça parte.");
             }
 
             $i++;
         }
 
-        dd('treinamento para escola encontrado.');
+        $certificado = Certificado::where('usuario_id', $usuario->id)
+            ->where('treinamento_id', $request->id)
+            ->first();
 
-        /*return redirect()->route('site.usuarios.create', [
-            'id'=>$espera->id
-        ]);*/
+        if ($certificado){
+            return back()->with("message_alert",
+                "Você já liberou esse certificado.");
+        }
+
+        $certificado = new Certificado();
+        $certificado->usuario_id = $usuario->id;
+        $certificado->treinamento_id = $request->id;
+        $certificado->save();
+
+        return back()->with("message",
+            "Certificado liberado com sucesso.");
+
     }
 
     public function avancar()
