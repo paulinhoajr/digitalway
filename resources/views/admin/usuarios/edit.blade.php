@@ -66,3 +66,20 @@
         </form>
     </div>
 @endsection
+
+@section('scripts')
+
+    <script>
+
+        $("#cpf").mask("999.999.999-99");
+        /*$("#nascimento").mask("99/99/9999");
+        $("#assoc_data").mask("99/99/9999");
+        $("#assoc_vencimento").mask("99/99/9999");
+        $("#cr_vencimento").mask("99/99/9999");
+        $('#telefone').mask('(99) 9999-9999');
+        $('#whatsapp').mask('(99) 9 9999-9999');
+        $('#cep').mask('99999-999');*/
+
+    </script>
+
+@endsection
