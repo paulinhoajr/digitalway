@@ -71,7 +71,7 @@ class EsperaController extends Controller
                 $espera = new Espera();
                 $espera->escola_id = $record['UID'];
                 $espera->nome = $record['Nome'];
-                $espera->cpf = $record['CPF'];
+                $espera->cpf = only_numbers($record['CPF']);
                 $espera->email = $record['Email'];
                 $espera->save();
             }
