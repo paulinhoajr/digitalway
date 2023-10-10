@@ -68,12 +68,14 @@ class EsperaController extends Controller
             DB::beginTransaction();
 
             foreach ($records as $record) {
-                $espera = new Espera();
-                $espera->escola_id = $record['UID'];
-                $espera->nome = $record['Nome'];
-                $espera->cpf = only_numbers($record['CPF']);
-                $espera->email = $record['Email'];
-                $espera->save();
+                if (only_numbers($record['CPF'])!="" and $record['Nome']!=""){
+                    $espera = new Espera();
+                    $espera->escola_id = $record['UID'];
+                    $espera->nome = $record['Nome'];
+                    $espera->cpf = only_numbers($record['CPF']);
+                    $espera->email = $record['Email'];
+                    $espera->save();
+                }
             }
 
             Storage::delete($caminho);
