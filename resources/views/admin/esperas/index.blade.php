@@ -38,7 +38,7 @@
                 <tr>
                     <td>{{ $espera->id }}</td>
                     <td>{{ $espera->nome }}</td>
-                    <td>{{ $espera->cpf }}</td>
+                    <td>{{ mascara($espera->cpf, "cpf") }}</td>
                     <td>{{ $espera->escola->nome }}</td>
                     <td>{{ dateTimeUsParaDateTimeBr($espera->created_at) }}</td>
                     {{--<td class="">

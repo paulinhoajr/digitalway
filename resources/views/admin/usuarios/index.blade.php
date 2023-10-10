@@ -41,7 +41,7 @@
                     <td>{{ $usuario->id }}</td>
                     <td>{{ $usuario->nome }}</td>
                     <td>{{ $usuario->email }}</td>
-                    <td>{{ $usuario->cpf }}</td>
+                    <td>{{ mascara($usuario->cpf, "cpf") }}</td>
                     <td>{{ $usuario->role }}</td>
                     <td>
                         @if($usuario->situacao == 1)
