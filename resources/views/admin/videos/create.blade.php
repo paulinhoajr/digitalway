@@ -43,8 +43,8 @@
                     <input type="hidden" name="escola_id" id="escola_id" value="{{old('escola_id')}}">
                 </div>
                 <div class="col-sm-4">
-                    <label for="url" class="form-label">Url (http://www.youtube.com/embed/VIDEO_ID)</label>
-                    <input type="text" class="form-control" id="url" name="url" placeholder="URL do vídeo" value="{{old('url')}}" required>
+                    <label for="url" class="form-label">Url ()</label>
+                    <input type="text" class="form-control" id="url" name="url" placeholder="URL do vídeo" value="http://www.youtube.com/embed/VIDEO_ID_AQUI" required>
                 </div>
 
                 <div class="col-sm-12">
