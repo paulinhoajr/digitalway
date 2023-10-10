@@ -39,7 +39,7 @@
                     <td>{{ $escola->id }}</td>
                     <td>{{ $escola->nome }}</td>
                     <td>{{ $escola->cidade->nome }} - {{ $escola->cidade->uf }}</td>
-                    <td>{{ $escola->tipo == 1 ? "Pública" : "Particular" }}</td>
+                    <td>{{ $escola->tipo == 0 ? "Pública" : "Particular" }}</td>
                     <td>{{ dateTimeUsParaDateTimeBr($escola->created_at) }}</td>
                     <td>
                         <div class="btn-group float-end" role="group" aria-label="">
