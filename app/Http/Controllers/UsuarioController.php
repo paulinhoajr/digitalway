@@ -15,6 +15,7 @@ use App\Models\Treinamento;
 use App\Models\Usuario;
 use App\Models\UsuariosEscolas;
 use App\Models\Video;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -215,6 +216,31 @@ class UsuarioController extends Controller
         return view('site.certificados', [
             'certificados' => $certificados
         ]);
+    }
+
+    public function gerar($id)
+    {
+        $certificado = Certificado::where('id', $id)
+            ->where('usuario_id', Auth::user()->id)
+            ->first();
+
+        $data = [
+            'nome' => $certificado->nome
+        ];
+
+        $pdf =  PDF::loadView('site.gerar', $data)
+            ->setOption('disable-external-links', false)
+            ->setOption('enable-local-file-access', true)
+            ->setPaper('a4', 'landscape')
+            ->setOption('enable-internal-links' , true);
+
+        $fileName =  "certificado_".$certificado->id .  '.pdf';
+
+        $caminho = "downloads/" . $fileName;
+        $pdf->save($caminho, 'public');
+
+        return response()->download("storage/downloads/".$fileName)->deleteFileAfterSend(true);
+
     }
 
     public function escolas()

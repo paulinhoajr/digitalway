@@ -19,4 +19,8 @@ class Treinamento extends Model
     public function escola(){
         return $this->belongsTo(Escola::class);
     }
+
+    public function topicos(){
+        return $this->hasMany(Topico::class);
+    }
 }

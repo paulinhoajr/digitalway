@@ -14,6 +14,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Treinamento</th>
                     <th scope="col">Criado</th>
+                    <th scope="col">Gerar</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,10 @@
                         <td>{{ $certificado->id }}</td>
                         <td>{{ $certificado->treinamento->nome }}</td>
                         <td>{{ dateTimeUsParaDateTimeBr($certificado->created_at) }}</td>
+                        <td>
+                            <a href="{{ route('site.usuarios.certificados.gerar', ['id'=>$certificado->id]) }}" type="button" class="ri btn btn-outline-success btn-sm" target="_blank">
+                                <svg class="bi"><use xlink:href="#icon_pdf"/></svg> ABRIR</a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

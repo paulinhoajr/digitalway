@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\TreinamentoStoreRequest;
 use App\Http\Requests\Admin\TreinamentoUpdateRequest;
 use App\Models\Certificado;
 use App\Models\Escola;
+use App\Models\Topico;
 use App\Models\Treinamento;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\QueryException;
@@ -36,6 +37,7 @@ class TreinamentoController extends Controller
 
     public function store(TreinamentoStoreRequest $request): RedirectResponse
     {
+
         try {
 
             DB::beginTransaction();
@@ -47,6 +49,17 @@ class TreinamentoController extends Controller
             $treinamento->descricao = $request->descricao;
             $treinamento->situacao = $request->situacao;
             $treinamento->save();
+
+            if (isset($request->topicos)){
+
+                foreach ($request->topicos as $key => $item){
+                    $topico = new Topico();
+                    $topico->treinamento_id = $treinamento->id;
+                    $topico->topico = $item['topico'];
+                    $topico->save();
+                }
+
+            }
 
             DB::commit();
 
@@ -90,6 +103,17 @@ class TreinamentoController extends Controller
             $treinamento->situacao = $request->situacao;
             $treinamento->save();
 
+            if (isset($request->topicos)){
+
+                foreach ($request->topicos as $key => $item){
+                    $topico = new Topico();
+                    $topico->treinamento_id = $treinamento->id;
+                    $topico->topico = $item['topico'];
+                    $topico->save();
+                }
+
+            }
+
             DB::commit();
 
             return redirect()
@@ -103,6 +127,18 @@ class TreinamentoController extends Controller
             return back()->with('message', 'Error: '. $e->getMessage());
 
         }
+    }
+
+    public function topico_delete($id): RedirectResponse
+    {
+        $topico = Topico::where('id', $id)
+            ->first();
+
+        if ($topico->delete()){
+            return back()->with("message", "Tópico removido.");
+        }
+
+        return back()->with("message_fail", "Houve um erro.");
     }
 
     public function delete($id): View
