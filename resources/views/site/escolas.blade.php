@@ -23,10 +23,8 @@
 
                                 @foreach($escola->videos as $video)
                                     <div class="col-md-3 mt-3">
-                                        <iframe class="embed-responsive-item boias"
-                                                src="{{ $video->url }}"
-                                                height="100%" width="100%"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+                                        <iframe width="100%"
+                                                src="{{ $video->url }}">
                                         </iframe>
                                         {{ $video->descricao }}
                                     </div>
