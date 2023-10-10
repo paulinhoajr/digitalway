@@ -33,8 +33,8 @@
                 <div class="col-sm-6">
                     <label for="tipo" class="form-label">Tipo</label>
                     <select class="form-select" id="tipo" name="tipo">
-                        <option {{ old('tipo' ? (old('tipo') == 1 ? "selected" : "") : "") }} value="1">Particular</option>
                         <option {{ old('tipo' ? (old('tipo') == 0 ? "selected" : "") : "") }} value="0">Pública</option>
+                        <option {{ old('tipo' ? (old('tipo') == 1 ? "selected" : "") : "") }} value="1">Particular</option>
                     </select>
                 </div>
 
