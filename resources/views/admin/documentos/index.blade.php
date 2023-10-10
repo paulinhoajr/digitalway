@@ -42,7 +42,9 @@
                     <td>{{ $documento->nome }}</td>
                     <td>{{ $documento->cidade ? $documento->cidade->nome : "-----" }}</td>
                     <td>{{ $documento->escola ? $documento->escola->nome : "-----" }}</td>
-                    <td>{{ $documento->pdf }}</td>
+                    <td>
+                        <a href="{{ asset('storage/documentos/'.$documento->pdf) }}" target="_blank">{{ $documento->nome }}</a>
+                    </td>
                     <td>
                         @if($documento->situacao == 1)
                             <button class="btn btn-outline-success btn-sm disabled"><svg class="bi"><use xlink:href="#icon_checado"/></svg></button>

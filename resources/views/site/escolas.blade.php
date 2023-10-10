@@ -38,7 +38,7 @@
 
                             @foreach($escola->documentos as $documento)
                                 <div class="col-md-3 mt-3">
-                                    <a class="btn btn-outline-success btn-lg w-100" href="{{ $documento->pdf }}">{{ $documento->nome }}</a>
+                                    <a class="btn btn-outline-success btn-lg w-100" href="{{ asset('storage/documentos/'.$documento->pdf) }}" target="_blank">{{ $documento->nome }}</a>
                                     <br>
                                     {{ $documento->descricao }}
                                 </div>
