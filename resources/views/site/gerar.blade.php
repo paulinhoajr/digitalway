@@ -1,6 +1,14 @@
 <html>
     <head>
         <style>
+
+            @page {
+                margin: 0;
+            }
+
+            table {
+                width: 100%;
+            }
             body{
                 font-family: "Times New Roman", Times, serif;
             }
@@ -22,7 +30,7 @@
 
             .watermark {
                 background-repeat: no-repeat;
-                position: fixed;
+                position: absolute;
                 bottom:   0;
                 left:     0;
                 width:    100%;
