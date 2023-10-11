@@ -224,9 +224,24 @@ class UsuarioController extends Controller
             ->where('usuario_id', Auth::user()->id)
             ->first();
 
+        $treinamento = Treinamento::where('id', $certificado->treinamento_id)->first();
+
+        $topicos = [];
+        foreach ($treinamento->topicos as $topico){
+            $topicos[] = $topico->topico;
+        }
+
         $data = [
-            'nome' => $certificado->nome
+            'usuario_nome' => $treinamento->usuario->nome,
+            'usuario_cpf' => $treinamento->usuario->cpf,
+            'treinamento_nome' => $treinamento->nome,
+            'treinamento_topicos' => $topicos,
+            'treinamento_descricao' => $treinamento->dscricao,
+            'treinamento_carga_horaria' => $treinamento->carga_horaria,
+            'treinamento_criado' => dateTimeUsParaBr($treinamento->created_at),
         ];
+
+        //return view('site.gerar', $data);
 
         $pdf =  PDF::loadView('site.gerar', $data)
             ->setOption('disable-external-links', false)

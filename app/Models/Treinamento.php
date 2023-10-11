@@ -20,6 +20,10 @@ class Treinamento extends Model
         return $this->belongsTo(Escola::class);
     }
 
+    public function usuario(){
+        return $this->belongsTo(Usuario::class);
+    }
+
     public function topicos(){
         return $this->hasMany(Topico::class);
     }
