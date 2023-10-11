@@ -22,9 +22,17 @@
             @csrf
             <input type="hidden" name="id" value="{{ $treinamento->id }}">
             <div class="row g-3">
-                <div class="col-sm-7">
+                <div class="col-sm-4">
                     <label for="nome" class="form-label">Nome</label>
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome da escola" value="{{ $treinamento->nome }}" required>
+                </div>
+                <div class="col-sm-3">
+                    <label for="usuario_id" class="form-label">Instrutor</label>
+                    <select class="form-select" id="usuario_id" name="usuario_id">
+                        @foreach($usuarios as $usuario)
+                            <option {{ $usuario->id == $treinamento->usuario_id ? "selected" : "" }} value="{{ $usuario->id }}">{{ $usuario->nome }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-sm-2">
                     <label for="carga_horaria" class="form-label">Carga Horária</label>

@@ -21,9 +21,17 @@
         <form class="repeater" action="{{ route('admin.treinamentos.store') }}" method="post">
             @csrf
             <div class="row g-3 teste">
-                <div class="col-sm-7">
+                <div class="col-sm-4">
                     <label for="nome" class="form-label">Nome</label>
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do treinamento" value="{{old('nome')}}" required>
+                </div>
+                <div class="col-sm-3">
+                    <label for="usuario_id" class="form-label">Instrutor</label>
+                    <select class="form-select" id="usuario_id" name="usuario_id">
+                        @foreach($usuarios as $usuario)
+                            <option value="{{ $usuario->id }}">{{ $usuario->nome }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-sm-2">
                     <label for="carga_horaria" class="form-label">Carga Horária</label>

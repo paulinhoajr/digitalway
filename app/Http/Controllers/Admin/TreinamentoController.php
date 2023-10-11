@@ -11,6 +11,7 @@ use App\Models\Certificado;
 use App\Models\Escola;
 use App\Models\Topico;
 use App\Models\Treinamento;
+use App\Models\Usuario;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
@@ -31,8 +32,13 @@ class TreinamentoController extends Controller
 
     public function create(): View
     {
+        $usuarios = Usuario::where('role', "!=","ROLE_SUPERADMIN")
+            ->orderBy('nome')
+            ->get();
 
-        return view('admin.treinamentos.create');
+        return view('admin.treinamentos.create', [
+            'usuarios' => $usuarios
+        ]);
     }
 
     public function store(TreinamentoStoreRequest $request): RedirectResponse
@@ -82,8 +88,13 @@ class TreinamentoController extends Controller
         $treinamento = Treinamento::where('id', $id)
             ->first();
 
+        $usuarios = Usuario::where('role', "!=","ROLE_SUPERADMIN")
+            ->orderBy('nome')
+            ->get();
+
         return view('admin.treinamentos.edit', [
-            'treinamento' => $treinamento
+            'treinamento' => $treinamento,
+            'usuarios' => $usuarios
         ]);
     }
 
