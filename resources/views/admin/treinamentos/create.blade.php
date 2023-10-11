@@ -21,11 +21,14 @@
         <form class="repeater" action="{{ route('admin.treinamentos.store') }}" method="post">
             @csrf
             <div class="row g-3 teste">
-                <div class="col-sm-9">
+                <div class="col-sm-7">
                     <label for="nome" class="form-label">Nome</label>
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do treinamento" value="{{old('nome')}}" required>
                 </div>
-
+                <div class="col-sm-2">
+                    <label for="carga_horaria" class="form-label">Carga Horária</label>
+                    <input type="text" class="form-control" id="carga_horaria" name="carga_horaria" placeholder="Carga Horária" value="{{ $treinamento->carga_horaria }}">
+                </div>
                 <div class="col-sm-3">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-select" id="situacao" name="situacao">
@@ -45,7 +48,7 @@
                                 <div data-repeater-item>
                                     <div class="row mt-3">
                                         <div class="col-sm-10">
-                                            <label for="topico" class="form-label">Tópico</label>
+                                            <label for="topico" class="form-label">Novo Tópico</label>
                                             <input type="text" id="topico" name="topico[]" class="form-control" />
                                         </div>
                                         <div class="col-sm-2">
@@ -69,7 +72,7 @@
                     <input type="hidden" name="escola_id" id="escola_id" value="{{old('escola_id')}}">
                 </div>
                 <div class="col-sm-12">
-                    <label class="form-label" for="descricao">Descrição</label>
+                    <label class="form-label" for="descricao">Conteúdo Programático</label>
                     <textarea name="descricao" class="form-control">{{ old('descricao') }}</textarea>
                 </div>
             </div>

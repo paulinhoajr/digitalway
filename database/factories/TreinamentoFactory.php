@@ -17,8 +17,10 @@ class TreinamentoFactory extends Factory
         return [
             'cidade_id' => $var,
             'escola_id' => $rand==0?null:$rand,
+            'usuario_id' => rand(3, 252),
             'nome' => fake()->name(),
             'descricao' => fake()->text(),
+            'carga_horaria' => rand(1, 6),
             'situacao' => rand(0, 1),
         ];
     }

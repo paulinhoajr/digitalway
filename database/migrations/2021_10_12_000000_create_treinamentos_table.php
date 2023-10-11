@@ -19,8 +19,10 @@ return new class extends Migration
             $table->unsignedBigInteger('escola_id')
                 ->nullable()
                 ->comment("pode nao ser ligado a uma escola");
+            $table->integer('usuario_id');
             $table->string('nome');
             $table->longText('descricao');
+            $table->string('carga_horaria');
             $table->integer('situacao');
             $table->rememberToken();
             $table->timestamps();
