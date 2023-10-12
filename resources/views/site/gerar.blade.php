@@ -9,20 +9,11 @@
             table {
                 width: 100%;
             }
+
             body{
                 font-family: "Times New Roman", Times, serif;
             }
 
-            .page-break {
-                page-break-after: always;
-            }
-
-            .largura {
-                width: 100%;
-            }
-            .altura {
-                height: 100%;
-            }
             .full {
                 width: 100%;
                 height: 100%;
@@ -39,50 +30,62 @@
                 opacity: 1;
             }
 
-            .topo {
-                margin-top: -30px;
+            .usuario_nome{
+                position: fixed;
+                top: 230px;
+                left: 150px;
             }
 
-            .footer {
-                position: absolute;
-                bottom:   -30px;
+            .treinamento_topicos{
+                position: fixed;
+                top: 370px;
+                left: 150px;
+                font-size: 15px;
+            }
+
+            .treinamento_carga_horaria{
+                position: fixed;
+                top: 450px;
+                left: 310px;
+                font-size: 25px;
+            }
+
+            .usuario_cpf{
+                position: fixed;
+                top: 527px;
+                left: 345px;
+                font-size: 20px;
+            }
+
+            .empresa_cnpj{
+                position: fixed;
+                top: 556px;
+                left: 305px;
+                font-size: 20px;
+            }
+
+            .instrutor{
+                position: fixed;
+                top: 587px;
+                left: 250px;
+                font-size: 20px;
+            }
+
+            .treinamento_criado{
+                position: fixed;
+                top: 650px;
+                left: 150px;
+                font-size: 20px;
             }
 
             .qrcode{
-                font-size: x-small;
+                position: fixed;
+                top: 510px;
+                right: 155px;
+                font-size: 20px;
             }
 
-            .conteudo{
-                text-indent: 50px;
-            }
 
-            .fonte_10{
-                font-size: 10px;
-            }
-
-            .fonte_11{
-                font-size: 11px;
-            }
-
-            .fonte_12{
-                font-size: 12px;
-            }
-
-            .fonte_13{
-                font-size: 13px;
-            }
-
-            .fonte_14{
-                font-size: 14px;
-            }
-
-            .fonte_18{
-                font-size: 18px;
-            }
-
-            .border_td{
-                border-bottom: 0.5px solid black;
-            }
 
         </style>
     </head>
@@ -92,33 +95,39 @@
             <img src="{{ asset('/images/layout.jpg') }}"  class="full">
         </div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <h2>{{ $treinamento_nome }}</h2>
-                    <th colspan="4">{{ $usuario_nome }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        @foreach($treinamento_topicos as $topico)
-                            TELA INTERATIVA: <span>* {{ $topico }}</span> <br>
-                        @endforeach
-                    </td>
+        <div class="usuario_nome">
+            <h2>{{ $usuario_nome }}</h2>
+        </div>
 
-                    <td>{{ $treinamento_descricao }}</td>
-                    <td>{{ $treinamento_carga_horaria }}</td>
-                    <td>{{ $treinamento_criado }}</td>
+        <div class="treinamento_topicos">
+            @foreach($treinamento_topicos as $topico)
+                <strong>TELA INTERATIVA:</strong> <span>{{ $topico }}</span><br>
+            @endforeach
+        </div>
 
-                </tr>
-                <tr>
-                    <th colspan="4">
-                        {{ mascara($usuario_cpf, "cpf") }}
-                    </th>
-                </tr>
-            </tbody>
-        </table>
+        <div class="treinamento_carga_horaria">
+            <p>{{ $treinamento_carga_horaria }} Horas</p>
+        </div>
+
+        <div class="usuario_cpf">
+            <p>{{ mascara($usuario_cpf, "cpf") }}</p>
+        </div>
+
+        <div class="empresa_cnpj">
+            <p>{{ "00.169.604/0001-66" }}</p>
+        </div>
+
+        <div class="instrutor">
+            <p>{{ $instrutor }}</p>
+        </div>
+
+        <div class="treinamento_criado">
+            <h3>{{ $treinamento_criado }}</h3>
+        </div>
+
+        <div class="qrcode">
+            <a><img src="data:image/png;base64, {!! base64_encode(QrCode::size(130)->generate($link)) !!} "></a>
+        </div>
 
     </body>
 </html>

@@ -51,6 +51,7 @@ class UsuarioController extends Controller
         $usuario = Usuario::where('cpf', only_numbers($request->cpf))
             ->where('situacao', 1)
             ->first();
+
         if (!$usuario){
             return back()->with("message_alert", "CPF não encontrado.");
         }
@@ -231,7 +232,12 @@ class UsuarioController extends Controller
             $topicos[] = $topico->topico;
         }
 
+        $instrutor = Usuario::where('id', $treinamento->usuario_id)->pluck('nome')->first();
+
+        $link = route('site.usuarios.qrcode', ['id'=>$treinamento->id]);
+
         $data = [
+            'instrutor' => $instrutor,
             'usuario_nome' => $treinamento->usuario->nome,
             'usuario_cpf' => $treinamento->usuario->cpf,
             'treinamento_nome' => $treinamento->nome,
@@ -239,6 +245,7 @@ class UsuarioController extends Controller
             'treinamento_descricao' => $treinamento->dscricao,
             'treinamento_carga_horaria' => $treinamento->carga_horaria,
             'treinamento_criado' => dateTimeUsParaBr($treinamento->created_at),
+            'link' => $link,
         ];
 
         //return view('site.gerar', $data);

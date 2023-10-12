@@ -164,7 +164,5 @@ class EscolaController extends Controller
         } catch (CannotInsertRecord $e) {
             $e->getRecord();
         }
-
     }
-
 }
