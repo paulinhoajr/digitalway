@@ -36,8 +36,8 @@
             .treinamento_topicos{
                 position: fixed;
                 top: 365px;
-                left: 250px;
-                font-size: 20px;
+                left: 225px;
+                font-size: 18px;
             }
             .item{
                 margin-bottom: -15px;
