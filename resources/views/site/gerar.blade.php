@@ -36,11 +36,11 @@
             .treinamento_topicos{
                 position: fixed;
                 top: 365px;
-                left: 225px;
+                left: 220px;
                 font-size: 18px;
             }
             .item{
-                margin-bottom: -15px;
+                margin-bottom: -10px;
             }
             .treinamento_carga_horaria{
                 position: fixed;

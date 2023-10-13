@@ -18,6 +18,13 @@ Route::controller(HomeController::class)
         //Route::get('/escolas', 'escolas')->name('escolas');
     });
 
+Route::controller(HomeController::class)
+    ->name('site.')
+    ->group(function () {
+
+        Route::get('/confirma/{id}', 'confirma')->name('confirma');
+
+    });
 
 Route::group(['prefix' => '/usuarios', 'where'=>['id'=>'[0-9]+']], function () {
 

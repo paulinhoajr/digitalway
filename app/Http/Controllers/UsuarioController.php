@@ -234,7 +234,7 @@ class UsuarioController extends Controller
 
         $instrutor = Usuario::where('id', $treinamento->usuario_id)->pluck('nome')->first();
 
-        $link = route('site.usuarios.qrcode', ['id'=>$treinamento->id]);
+        $link = route('site.usuarios.qrcode', ['id'=>$certificado->id]);
 
         $data = [
             'instrutor' => $instrutor,
