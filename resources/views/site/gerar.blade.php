@@ -1,24 +1,20 @@
+<!doctype html>
 <html>
     <head>
         <style>
-
             @page {
                 margin: 0;
             }
-
             table {
                 width: 100%;
             }
-
             body{
                 font-family: "Times New Roman", Times, serif;
             }
-
             .full {
                 width: 100%;
                 height: 100%;
             }
-
             .watermark {
                 background-repeat: no-repeat;
                 position: absolute;
@@ -29,108 +25,95 @@
                 z-index:  -1000;
                 opacity: 1;
             }
-
             .usuario_nome{
                 position: fixed;
-                top: 230px;
-                left: 150px;
+                top: 220px;
+                /*left: 150px;*/
+                width: 100%;
+                text-align: center;
+                font-size: 25px;
             }
-
             .treinamento_topicos{
                 position: fixed;
-                top: 370px;
-                left: 150px;
-                font-size: 15px;
+                top: 365px;
+                left: 250px;
+                font-size: 20px;
             }
-
+            .item{
+                margin-bottom: -15px;
+            }
             .treinamento_carga_horaria{
                 position: fixed;
                 top: 450px;
                 left: 310px;
                 font-size: 25px;
             }
-
             .usuario_cpf{
                 position: fixed;
-                top: 527px;
+                top: 520px;
                 left: 345px;
                 font-size: 20px;
             }
-
             .empresa_cnpj{
                 position: fixed;
-                top: 556px;
+                top: 554px;
                 left: 305px;
                 font-size: 20px;
             }
-
             .instrutor{
                 position: fixed;
-                top: 587px;
+                top: 584px;
                 left: 250px;
                 font-size: 20px;
             }
-
             .treinamento_criado{
                 position: fixed;
-                top: 650px;
-                left: 150px;
-                font-size: 20px;
+                top: 645px;
+                /*left: 150px;*/
+                font-size: 18px;
+                width: 100%;
+                text-align: center;
             }
-
             .qrcode{
                 position: fixed;
-                top: 510px;
-                right: 155px;
-                font-size: 20px;
+                top: 520px;
+                right: 100px;
+                font-size: 15px;
+                text-align: center;
             }
-
-
-
         </style>
     </head>
     <body>
-
         <div class="watermark">
-            <img src="{{ asset('/images/layout.jpg') }}"  class="full">
+            <img src="{{ asset('/images/layout.png') }}"  class="full">
         </div>
-
         <div class="usuario_nome">
             <h2>{{ $usuario_nome }}</h2>
         </div>
-
         <div class="treinamento_topicos">
             @foreach($treinamento_topicos as $topico)
-                <strong>TELA INTERATIVA:</strong> <span>{{ $topico }}</span><br>
+                <p class="item">{{ $topico }}</p>
             @endforeach
         </div>
-
         <div class="treinamento_carga_horaria">
             <p>{{ $treinamento_carga_horaria }} Horas</p>
         </div>
-
         <div class="usuario_cpf">
             <p>{{ mascara($usuario_cpf, "cpf") }}</p>
         </div>
-
         <div class="empresa_cnpj">
             <p>{{ "00.169.604/0001-66" }}</p>
         </div>
-
         <div class="instrutor">
             <p>{{ $instrutor }}</p>
         </div>
-
         <div class="treinamento_criado">
-            <h3>{{ $treinamento_criado }}</h3>
+            <p>Nova Prata / RS {{ $treinamento_criado }}</p>
         </div>
-
         <div class="qrcode">
-            <a><img src="data:image/png;base64, {!! base64_encode(QrCode::size(130)->generate($link)) !!} "></a>
+            <img src="data:image/png;base64, {!! base64_encode(QrCode::size(160)->generate($link)) !!} "><br>
+            <p style="margin-top: 0px;">DOCUMENTO ASSINADO</p>
+            <p style="margin-top: -18px;">DIGITALMENTE</p>
         </div>
-
     </body>
 </html>
-
-
-
