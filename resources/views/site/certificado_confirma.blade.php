@@ -6,14 +6,14 @@
 
         <div class="col-md-12">
 
-            <h2 class="mt-5">Confirmação de Assinatura</h2>
+            <h2 class="mt-5">Confirmação de autenticidade de assinatura em certificado.</h2>
 
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Treinamento</th>
-                    <th scope="col">Criado</th>
+                    <th scope="col">Data</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -24,9 +24,7 @@
                     </tr>
                 </tbody>
             </table>
-
         </div>
-
     </div>
 
 @endsection
