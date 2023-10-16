@@ -15,7 +15,7 @@ class Espera extends Model
 
     public function escola()
     {
-        return $this->belongsTo(Escola::class);
+        return $this->belongsTo(Escola::class)->withTrashed();
     }
 
 }
