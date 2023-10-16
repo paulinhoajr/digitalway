@@ -32,7 +32,7 @@ class TreinamentoController extends Controller
 
     public function create(): View
     {
-        $usuarios = Usuario::where('role', "!=","ROLE_SUPERADMIN")
+        $usuarios = Usuario::where('role', "ROLE_ADMIN")
             ->orderBy('nome')
             ->get();
 
@@ -50,8 +50,10 @@ class TreinamentoController extends Controller
 
             $treinamento = new Treinamento();
             $treinamento->nome = $request->nome;
+            $treinamento->usuario_id = $request->usuario_id;
             $treinamento->cidade_id = $request->cidade_id ?? null;
             $treinamento->escola_id = $request->escola_id ?? null;
+            $treinamento->carga_horaria = $request->carga_horaria;
             $treinamento->descricao = $request->descricao;
             $treinamento->situacao = $request->situacao;
             $treinamento->save();
@@ -59,12 +61,13 @@ class TreinamentoController extends Controller
             if (isset($request->topicos)){
 
                 foreach ($request->topicos as $key => $item){
-                    $topico = new Topico();
-                    $topico->treinamento_id = $treinamento->id;
-                    $topico->topico = $item['topico'];
-                    $topico->save();
+                    if($item['topico']){
+                        $topico = new Topico();
+                        $topico->treinamento_id = $treinamento->id;
+                        $topico->topico = $item['topico'];
+                        $topico->save();
+                    }
                 }
-
             }
 
             DB::commit();
@@ -77,7 +80,7 @@ class TreinamentoController extends Controller
 
             DB::rollBack();
 
-            return back()->with('message', 'Error: '. $e->getMessage());
+            return back()->with('message', 'Error: '. $e->getMessage())->withInput();
 
         }
 
@@ -110,6 +113,8 @@ class TreinamentoController extends Controller
             $treinamento->nome = $request->nome;
             $treinamento->cidade_id = $request->cidade_id ?? null;
             $treinamento->escola_id = $request->escola_id ?? null;
+            $treinamento->carga_horaria = $request->carga_horaria;
+            $treinamento->usuario_id = $request->usuario_id;
             $treinamento->descricao = $request->descricao;
             $treinamento->situacao = $request->situacao;
             $treinamento->save();
@@ -117,12 +122,13 @@ class TreinamentoController extends Controller
             if (isset($request->topicos)){
 
                 foreach ($request->topicos as $key => $item){
-                    $topico = new Topico();
-                    $topico->treinamento_id = $treinamento->id;
-                    $topico->topico = $item['topico'];
-                    $topico->save();
+                    if($item['topico']){
+                        $topico = new Topico();
+                        $topico->treinamento_id = $treinamento->id;
+                        $topico->topico = $item['topico'];
+                        $topico->save();
+                    }
                 }
-
             }
 
             DB::commit();

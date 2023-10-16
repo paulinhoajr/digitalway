@@ -27,6 +27,8 @@ class TreinamentoUpdateRequest extends FormRequest
         return [
             'escola_id' => ['nullable'],
             'cidade_id' => ['nullable'],
+            'usuario_id' => ['required'],
+            'carga_horaria' => ['required'],
             'nome' => ['required'],
             'descricao' => ['required'],
             'situacao' => ['nullable'],

@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-sm-2">
                     <label for="carga_horaria" class="form-label">Carga Horária</label>
-                    <input type="text" class="form-control" id="carga_horaria" name="carga_horaria" placeholder="Carga Horária">
+                    <input type="text" class="form-control" id="carga_horaria" name="carga_horaria" placeholder="Carga Horária" value="{{ old('carga_horaria') }}">
                 </div>
                 <div class="col-sm-3">
                     <label for="situacao" class="form-label">Situação</label>
