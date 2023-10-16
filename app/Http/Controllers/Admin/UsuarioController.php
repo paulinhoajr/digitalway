@@ -36,6 +36,8 @@ class UsuarioController extends Controller
         $certificados = Certificado::where('usuario_id', $usuario->id)
             ->get();
 
+        //dd($usuario->escolas);
+
         return view('admin.usuarios.show', [
             'usuario' => $usuario,
             'certificados' => $certificados,

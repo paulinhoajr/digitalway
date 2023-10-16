@@ -30,8 +30,8 @@
             @foreach($usuario->escolas as $usuarioEscola)
                 <tr>
                     <td>{{ $usuarioEscola->id }}</td>
-                    <td>{{ $usuarioEscola->escola->nome }}</td>
-                    <td>{{ $usuarioEscola->escola->cidade->nome }}</td>
+                    <td>{{ $usuarioEscola->nome }}</td>
+                    <td>{{ $usuarioEscola->cidade->nome }}</td>
                     <td>{{ dateTimeUsParaDateTimeBr($usuario->created_at) }}</td>
                 </tr>
             @endforeach
