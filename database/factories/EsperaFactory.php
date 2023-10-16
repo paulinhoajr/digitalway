@@ -19,7 +19,7 @@ class EsperaFactory extends Factory
             'escola_id' => rand(1, 30),
             'nome' => fake()->name(),
             'email' => fake()->email(),
-            'cpf' => fake()->unique()->imei(),
+            'cpf' => rand(10000000000, 99999999999),
         ];
     }
 }

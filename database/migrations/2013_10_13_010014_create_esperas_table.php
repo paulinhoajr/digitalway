@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('esperas', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('escola_id');
-            $table->unsignedBigInteger('cpf');
+            $table->string('cpf', 11);
             $table->string('nome');
             $table->string('email')->nullable();
             $table->timestamps();
