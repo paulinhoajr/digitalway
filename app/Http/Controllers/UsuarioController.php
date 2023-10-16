@@ -238,8 +238,8 @@ class UsuarioController extends Controller
 
         $data = [
             'instrutor' => $instrutor,
-            'usuario_nome' => $treinamento->usuario->nome,
-            'usuario_cpf' => $treinamento->usuario->cpf,
+            'usuario_nome' => $certificado->usuario->nome,
+            'usuario_cpf' => $certificado->usuario->cpf,
             'treinamento_nome' => $treinamento->nome,
             'treinamento_topicos' => $topicos,
             'treinamento_descricao' => $treinamento->dscricao,
