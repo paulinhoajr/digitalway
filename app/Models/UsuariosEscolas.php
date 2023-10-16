@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UsuariosEscolas extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory;
 
     public $timestamps = true;
 

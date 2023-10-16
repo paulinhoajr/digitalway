@@ -16,6 +16,26 @@
     </div>
 
     <div class="table-responsive small">
+        <h5>Incluír escola para {{ $usuario->nome }}</h5>
+        <div class="">
+
+            @include('_partials.message')
+
+            <form action="{{ route('admin.usuarios.escola') }}" method="post">
+                @csrf
+                <input type="hidden" name="usuario_id" value="{{ $usuario->id }}">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="escola">Buscar escola - Selecione na lista</label>
+                        <input type="text" class="form-control"  id="escola" name="escola"  value="{{old('escola')}}"  placeholder="Escola">
+                        <input type="hidden" name="escola_id" id="escola_id" value="{{old('escola_id')}}">
+                    </div>
+                </div>
+
+                <button class="float-end btn btn-primary" type="submit">Incluír</button>
+            </form>
+        </div>
+        <hr class="my-4">
         <h5>Escolas</h5>
         <table class="table table-striped table-sm">
             <thead>
@@ -24,15 +44,19 @@
                     <th scope="col">Escola</th>
                     <th scope="col">Cidade</th>
                     <th scope="col">Criado</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($usuario->escolas as $usuarioEscola)
+            @foreach($usuario->escolas->withoutTrashed() as $usuarioEscola)
                 <tr>
                     <td>{{ $usuarioEscola->id }}</td>
                     <td>{{ $usuarioEscola->nome }}</td>
                     <td>{{ $usuarioEscola->cidade->nome }}</td>
                     <td>{{ dateTimeUsParaDateTimeBr($usuario->created_at) }}</td>
+                    <td>
+                        <a href="{{ route('admin.usuarios.escola.delete', ['escola_id'=>$usuarioEscola->id, 'usuario_id'=>$usuario->id]) }}" type="button" class="btn btn-outline-danger btn-sm"><svg class="bi"><use xlink:href="#icon_excluir"/></svg> REMOVER</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
@@ -58,4 +82,43 @@
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('scripts')
+
+    <script>
+        $(function() {
+            $( "#escola" ).autocomplete({
+                minLength: 2,
+                source: function( request, response ) {
+                    $.ajax({
+                        url: '{{ route('escolas.autocomplete') }}',
+                        dataType: "json",
+                        data: {
+                            busca: $('#escola').val()
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    //console.log("select: "+ui.item.value);
+                    $('#escola').val(ui.item.value);
+                    $('#escola_id').val(ui.item.id);
+                    return false;
+                },
+                focus: function(event, ui){
+                    //console.log("focus: "+ui.item.value);
+                    $("#escola" ).val(ui.item.value);
+                    $('#escola_id').val(ui.item.id);
+                    return false;
+                },
+            });
+        });
+
+        /*$("#cpf").mask("999.999.999-99");*/
+
+    </script>
+
 @endsection

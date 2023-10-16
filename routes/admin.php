@@ -30,6 +30,8 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
                 Route::post('/update', 'update')->name('usuarios.update');
                 Route::get('/delete/{id}', 'delete')->name('usuarios.delete');
                 Route::get('/destroy/{id}', 'destroy')->name('usuarios.destroy');
+                Route::post('/escola', 'escola')->name('usuarios.escola');
+                Route::get('/escola/delete/{escola_id}/{usuario_id}', 'escola_delete')->name('usuarios.escola.delete');
             });
     });
 

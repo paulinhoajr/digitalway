@@ -3,15 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\DocumentoStoreRequest;
+use App\Http\Requests\Admin\UsuarioEscolaRequest;
 use App\Http\Requests\Admin\UsuarioStoreRequest;
 use App\Http\Requests\Admin\UsuarioUpdateRequest;
 use App\Models\Certificado;
+use App\Models\Documento;
 use App\Models\Usuario;
+use App\Models\UsuariosEscolas;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class UsuarioController extends Controller
@@ -155,6 +161,54 @@ class UsuarioController extends Controller
 
     }
 
+    public function escola(UsuarioEscolaRequest $request): RedirectResponse
+    {
+        try {
+
+            $usuarioEscola = UsuariosEscolas::where('usuario_id', $request->usuario_id)
+                ->where('escola_id', $request->escola_id)
+                ->first();
+
+            if ($usuarioEscola){
+                return back()->with('message_alert', 'Error: Este usuário já esta incluído nesta escola.');
+            }
+
+            DB::beginTransaction();
+
+            $escola = new UsuariosEscolas();
+            $escola->usuario_id = $request->usuario_id;
+            $escola->escola_id = $request->escola_id;
+            $escola->save();
+
+            DB::commit();
+
+            return back()->with('message', 'Inserido com sucesso.');
+
+        }catch (QueryException|\Exception $e){
+
+            DB::rollBack();
+
+            return back()->with('message_fail', 'Error: '. $e->getMessage());
+
+        }
+
+    }
+
+    public function escola_delete($escola_id, $usuario_id): RedirectResponse
+    {
+        $usuarioEscola = UsuariosEscolas::where('usuario_id', $usuario_id)
+            ->where('escola_id', $escola_id)
+            ->first();
+
+        if ($usuarioEscola){
+            $usuarioEscola->delete();
+
+            return back()->with('message', 'Escola removido com sucesso.');
+        }
+
+        return back()->with('message_fail', 'Escola não pode ser removida.');
+
+    }
 
 
 }
