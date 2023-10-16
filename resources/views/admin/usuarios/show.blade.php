@@ -25,14 +25,14 @@
                 @csrf
                 <input type="hidden" name="usuario_id" value="{{ $usuario->id }}">
                 <div class="row g-3">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <label class="form-label" for="escola">Buscar escola - Selecione na lista</label>
                         <input type="text" class="form-control"  id="escola" name="escola"  value="{{old('escola')}}"  placeholder="Escola">
                         <input type="hidden" name="escola_id" id="escola_id" value="{{old('escola_id')}}">
                     </div>
+                    <button class="float-end btn btn-primary" type="submit">Incluír</button>
                 </div>
 
-                <button class="float-end btn btn-primary" type="submit">Incluír</button>
             </form>
         </div>
         <hr class="my-4">
@@ -48,7 +48,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($usuario->escolas->withoutTrashed() as $usuarioEscola)
+            @foreach($usuario->escolas as $usuarioEscola)
                 <tr>
                     <td>{{ $usuarioEscola->id }}</td>
                     <td>{{ $usuarioEscola->nome }}</td>
