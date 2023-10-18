@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\Site\EsperaCreateRequest;
 use App\Http\Requests\Site\QRCODERequest;
 use App\Http\Requests\Site\UsuarioStoreRequest;
 use App\Http\Requests\Site\UsuarioUpdateRequest;
 use App\Models\Certificado;
 use App\Models\Documento;
-use App\Models\Escola;
 use App\Models\Espera;
 use App\Models\Treinamento;
 use App\Models\Usuario;
 use App\Models\UsuariosEscolas;
 use App\Models\Video;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
@@ -109,7 +106,20 @@ class UsuarioController extends Controller
         $espera = Espera::where('cpf', only_numbers($request->cpf))->first();
 
         if (!$espera){
-            return back()->with("message_alert", "CPF não encontrado.");
+            return back()->with("message_alert", "CPF não encontrado ou já cadastrado.");
+        }
+
+        $usuario = Usuario::where('cpf', only_numbers($request->cpf))->first();
+
+        if ($usuario){
+            $usuarioEscola = UsuariosEscolas::where('usuario_id', $usuario->id)
+                ->where('escola_id', $espera->escola_id)
+                ->first();
+
+            if ($usuarioEscola){
+                return back()->with("message_alert", "Você já está cadastrado nesta escola.");
+            }
+
         }
 
         return redirect()->route('site.usuarios.create', [
@@ -120,6 +130,37 @@ class UsuarioController extends Controller
     public function create($id)
     {
         $espera = Espera::where('id', $id)->first();
+
+        $usuario = Usuario::where('cpf', $espera->cpf)->first();
+
+        if ($usuario){
+
+            try {
+                DB::beginTransaction();
+
+                $escola = new UsuariosEscolas();
+                $escola->usuario_id = $usuario->id;
+                $escola->escola_id = $espera->escola_id;
+                $escola->save();
+
+                $espera->delete();
+
+                DB::commit();
+
+                Auth::loginUsingId($usuario->id);
+
+                return redirect()->route('site.index')
+                    ->with('message', "Usuário cadastrado e ativado com sucesso.");
+
+            }catch (QueryException|\Exception $e){
+
+                DB::rollBack();
+
+                return redirect()->route('site.usuarios.avancar')
+                    ->with("message_danger", $e->getMessage());
+            }
+
+        }
 
         return view('site.usuarios.create', [
             'espera'=>$espera

@@ -8,6 +8,8 @@
 
             <h2 class="mt-5">Inicial</h2>
 
+            @include('_partials.message')
+
         </div>
 
     </div>
