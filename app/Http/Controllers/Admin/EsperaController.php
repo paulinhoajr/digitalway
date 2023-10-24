@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\EsperaCSVRequest;
+use App\Models\Escola;
 use App\Models\Espera;
 use App\Models\Usuario;
 use App\Models\UsuariosEscolas;
@@ -71,6 +72,12 @@ class EsperaController extends Controller
 
             foreach ($records as $record) {
                 if (only_numbers($record['CPF'])!="" and $record['Nome']!=""){
+
+                    $escola = Escola::where('id', only_numbers($record['UID']))->first();
+
+                    if (!$escola){
+                        return back()->with('message_fail', "ID da escola inexistente.");
+                    }
 
                     $usuario = Usuario::where('cpf', only_numbers($record['CPF']))->first();
 
