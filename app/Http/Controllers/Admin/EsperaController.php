@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\EsperaCSVRequest;
 use App\Models\Espera;
+use App\Models\Usuario;
+use App\Models\UsuariosEscolas;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -69,12 +71,39 @@ class EsperaController extends Controller
 
             foreach ($records as $record) {
                 if (only_numbers($record['CPF'])!="" and $record['Nome']!=""){
-                    $espera = new Espera();
-                    $espera->escola_id = $record['UID'];
-                    $espera->nome = $record['Nome'];
-                    $espera->cpf = only_numbers($record['CPF']);
-                    $espera->email = $record['Email'];
-                    $espera->save();
+
+                    $usuario = Usuario::where('cpf', only_numbers($record['CPF']))->first();
+
+                    if ($usuario){
+                        $usuarioEscola = UsuariosEscolas::where('usuario_id', $usuario->id)
+                            ->where('escola_id', $record['UID'])
+                            ->first();
+
+                        if (!$usuarioEscola){
+
+                            $escola = new UsuariosEscolas();
+                            $escola->usuario_id = $usuario->id;
+                            $escola->escola_id = $record['UID'];
+                            $escola->save();
+
+                            //continue;
+                        }
+                    }else{
+                        $espera = Espera::where('cpf', only_numbers($record['CPF']))
+                            ->where('escola_id', $record['UID'])
+                            ->first();
+
+                        if (!$espera){
+                            $espera = new Espera();
+                            $espera->escola_id = $record['UID'];
+                            $espera->nome = $record['Nome'];
+                            $espera->cpf = only_numbers($record['CPF']);
+                            $espera->email = $record['Email'];
+                            $espera->save();
+                        }
+                    }
+
+
                 }
             }
 

@@ -105,13 +105,17 @@ class UsuarioController extends Controller
     {
         $espera = Espera::where('cpf', only_numbers($request->cpf))->first();
 
-        if (!$espera){
-            return back()->with("message_alert", "CPF não encontrado ou já cadastrado.");
-        }
-
         $usuario = Usuario::where('cpf', only_numbers($request->cpf))->first();
 
-        if ($usuario){
+        if (!$espera){
+
+            if ($usuario){
+                return back()->with("message", "Você já está cadastrado.");
+            }
+
+        }
+
+        /*if ($usuario){
             $usuarioEscola = UsuariosEscolas::where('usuario_id', $usuario->id)
                 ->where('escola_id', $espera->escola_id)
                 ->first();
@@ -120,7 +124,7 @@ class UsuarioController extends Controller
                 return back()->with("message_alert", "Você já está cadastrado nesta escola.");
             }
 
-        }
+        }*/
 
         return redirect()->route('site.usuarios.create', [
             'id'=>$espera->id
