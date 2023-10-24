@@ -137,6 +137,8 @@ class UsuarioController extends Controller
 
         $usuario = Usuario::where('cpf', $espera->cpf)->first();
 
+        dd($espera);
+
         if ($usuario){
 
             try {

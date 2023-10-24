@@ -83,14 +83,14 @@ class EsperaController extends Controller
 
                     if ($usuario){
                         $usuarioEscola = UsuariosEscolas::where('usuario_id', $usuario->id)
-                            ->where('escola_id', $record['UID'])
+                            ->where('escola_id', only_numbers($record['UID']))
                             ->first();
 
                         if (!$usuarioEscola){
 
                             $escola = new UsuariosEscolas();
                             $escola->usuario_id = $usuario->id;
-                            $escola->escola_id = $record['UID'];
+                            $escola->escola_id = only_numbers($record['UID']);
                             $escola->save();
 
                             //continue;
