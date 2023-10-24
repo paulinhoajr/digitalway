@@ -6,7 +6,7 @@
 
         <div class="col-md-6 offset-md-3">
 
-            <h2 class="mt-5">Cadastrar em {{ $espera->escola->nome }}</h2>
+            <h2 class="mt-5">Cadastrar {{--em {{ $espera->escola->nome }}--}}</h2>
 
             @include('_partials.message')
 

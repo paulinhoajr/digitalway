@@ -111,6 +111,8 @@ class UsuarioController extends Controller
 
             if ($usuario){
                 return back()->with("message", "Você já está cadastrado.");
+            }else{
+                return back()->with("message_alert", "CPF não encontrado.");
             }
 
         }
@@ -135,9 +137,7 @@ class UsuarioController extends Controller
     {
         $espera = Espera::where('id', $id)->first();
 
-        $usuario = Usuario::where('cpf', $espera->cpf)->first();
-
-        dd($espera);
+        /*$usuario = Usuario::where('cpf', $espera->cpf)->first();
 
         if ($usuario){
 
@@ -166,7 +166,7 @@ class UsuarioController extends Controller
                     ->with("message_danger", $e->getMessage());
             }
 
-        }
+        }*/
 
         return view('site.usuarios.create', [
             'espera'=>$espera
@@ -182,31 +182,48 @@ class UsuarioController extends Controller
                 ->with('message_alert', "Dados inválidos");
         }
 
+        $esperas = Espera::where('cpf', $espera->cpf)->get();
+
         try {
-            DB::beginTransaction();
 
-            $usuario = new Usuario();
-            $usuario->nome = $request->nome;
-            $usuario->cpf = $espera->cpf;
-            $usuario->email = $request->email;
-            $usuario->password = Hash::make($request->password);
-            $usuario->role = "ROLE_USUARIO";
-            $usuario->situacao = 1;
-            $usuario->save();
 
-            $escola = new UsuariosEscolas();
-            $escola->usuario_id = $usuario->id;
-            $escola->escola_id = $espera->escola_id;
-            $escola->save();
+            if ($esperas){
 
-            $espera->delete();
+                DB::beginTransaction();
 
-            DB::commit();
+                $usuario = new Usuario();
+                $usuario->nome = $request->nome;
+                $usuario->cpf = $espera->cpf;
+                $usuario->email = $request->email;
+                $usuario->password = Hash::make($request->password);
+                $usuario->role = "ROLE_USUARIO";
+                $usuario->situacao = 1;
+                $usuario->save();
 
-            Auth::loginUsingId($usuario->id);
+                foreach ($esperas as $espera){
 
-            return redirect()->route('site.index')
-                ->with('message', "Usuário cadastrado e ativado com sucesso.");
+                    $escola = new UsuariosEscolas();
+                    $escola->usuario_id = $usuario->id;
+                    $escola->escola_id = $espera->escola_id;
+                    $escola->save();
+
+                    $espera->delete();
+                }
+
+                DB::commit();
+
+                Auth::loginUsingId($usuario->id);
+
+                return redirect()->route('site.index')
+                    ->with('message', "Usuário cadastrado e ativado com sucesso.");
+
+            }else{
+
+                DB::rollBack();
+
+                return redirect()->route('site.usuarios.avancar')
+                    ->with('message_fail', "Houve um erro.");
+            }
 
         }catch (\Exception $e){
             DB::rollBack();
