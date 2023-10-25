@@ -10,7 +10,8 @@ return new class extends Migration
     {
         Schema::create('escolas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('cidade_id');
+            //$table->integer('cidade_id');
+            $table->foreignId('cidade_id');
             $table->string('nome');
             $table->integer('tipo')->comment('publica/privada');
             $table->timestamps();

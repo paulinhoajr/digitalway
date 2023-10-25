@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('certificados', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('usuario_id');
-            $table->unsignedBigInteger('treinamento_id');
+            //$table->integer('usuario_id');
+            $table->foreignId('usuario_id');
+            //$table->integer('treinamento_id');
+            $table->foreignId('treinamento_id');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('treinamentos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cidade_id')
-                ->nullable()
-                ->comment("pode nao ser ligado a uma cidade");
-            $table->unsignedBigInteger('escola_id')
-                ->nullable()
-                ->comment("pode nao ser ligado a uma escola");
-            $table->integer('usuario_id');
+            //$table->integer('cidade_id');
+            $table->foreignId('cidade_id');
+            //$table->integer('escola_id');
+            $table->foreignId('escola_id');
+            //$table->integer('usuario_id');
+            $table->foreignId('usuario_id');
             $table->string('nome');
             $table->longText('descricao');
             $table->string('carga_horaria');

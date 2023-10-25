@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('estados', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('regiao_id')->unsigned();
+            $table->integer('regiao_id')->unsigned();
             $table->string('nome');
             $table->string('uf');
             $table->timestamps();

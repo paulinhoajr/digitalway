@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('topicos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('treinamento_id');
+            //$table->integer('treinamento_id');
+            $table->foreignId('treinamento_id');
             $table->string('topico');
             $table->timestamps();
             $table->softDeletes();

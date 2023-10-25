@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('cidades', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('estado_id')->unsigned();
+            $table->integer('estado_id')->unsigned();
             $table->integer('ibge');
             $table->string('nome');
             $table->string('uf');

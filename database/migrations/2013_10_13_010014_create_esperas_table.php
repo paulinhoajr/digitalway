@@ -10,7 +10,8 @@ return new class extends Migration
     {
         Schema::create('esperas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('escola_id');
+            //$table->integer('escola_id');
+            $table->foreignId('escola_id');
             $table->string('cpf', 11);
             $table->string('nome');
             $table->string('email')->nullable();
