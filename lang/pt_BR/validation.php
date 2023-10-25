@@ -214,7 +214,7 @@ return [
         'category' => 'categoria',
         'blood_type' => 'tipo sanguíneo',
         'birth_date' => 'data de nascimento',
-        'descricao' => 'Conteúdo Programático'
+        'descricao' => 'Descrição'
     ],
 
 ];

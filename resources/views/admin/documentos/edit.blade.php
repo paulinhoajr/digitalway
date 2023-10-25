@@ -49,8 +49,8 @@
                 </div>
                 <div class="col-sm-6">
                     <label class="form-label" for="escola">Buscar escola - Selecione na lista</label>
-                    <input type="text" class="form-control"  id="escola" name="escola"  value="{{ $documento->escola->nome }}"  placeholder="Escola">
-                    <input type="hidden" name="escola_id" id="escola_id" value="{{ $documento->escola_id }}">
+                    <input type="text" class="form-control"  id="escola" name="escola"  value="{{ $documento->escola->nome ?? null }}"  placeholder="Escola">
+                    <input type="hidden" name="escola_id" id="escola_id" value="{{ $documento->escola_id ?? null }}">
                 </div>
 
                 <div class="col-sm-12">

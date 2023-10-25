@@ -41,8 +41,8 @@
                 </div>
                 <div class="col-sm-4">
                     <label class="form-label" for="escola">Buscar escola - Selecione na lista</label>
-                    <input type="text" class="form-control"  id="escola" name="escola"  value="{{ $video->escola->nome }}"  placeholder="Escola">
-                    <input type="hidden" name="escola_id" id="escola_id" value="{{ $video->escola_id }}">
+                    <input type="text" class="form-control"  id="escola" name="escola"  value="{{ $video->escola->nome ?? null }}"  placeholder="Escola">
+                    <input type="hidden" name="escola_id" id="escola_id" value="{{ $video->escola_id ?? null }}">
                 </div>
                 <div class="col-sm-4">
                     <label for="url" class="form-label">Url (https://www.youtube.com/embed/VIDEO_ID_AQUI)</label>

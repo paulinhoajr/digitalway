@@ -80,7 +80,7 @@
                     <input type="hidden" name="escola_id" id="escola_id" value="{{old('escola_id')}}">
                 </div>
                 <div class="col-sm-12">
-                    <label class="form-label" for="descricao">Conteúdo Programático</label>
+                    <label class="form-label" for="descricao">Descrição (Conteúdo Programático)</label>
                     <textarea name="descricao" class="form-control">{{ old('descricao') }}</textarea>
                 </div>
             </div>

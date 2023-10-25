@@ -91,10 +91,10 @@
                 <div class="col-sm-6">
                     <label class="form-label" for="escola">Buscar escola - Selecione na lista</label>
                     <input type="text" class="form-control"  id="escola" name="escola"  value="{{ $treinamento->escola->nome ?? null }}"  placeholder="Escola">
-                    <input type="hidden" name="escola_id" id="escola_id" value="{{ $treinamento->escola_id }}">
+                    <input type="hidden" name="escola_id" id="escola_id" value="{{ $treinamento->escola_id ?? null }}">
                 </div>
                 <div class="col-sm-12">
-                    <label class="form-label" for="descricao">Conteúdo Programático</label>
+                    <label class="form-label" for="descricao">Descrição (Conteúdo Programático)</label>
                     <textarea name="descricao" class="form-control">{{ $treinamento->descricao }}</textarea>
                 </div>
             </div>
