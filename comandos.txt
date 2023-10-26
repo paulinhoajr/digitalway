@@ -9,5 +9,4 @@ php artisan storage:link
 php artisan queue:work
 sudo supervisorctl restart all
 
-
 chmod -Rf 777 /var/www/voopeclubes/storage/
