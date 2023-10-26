@@ -108,7 +108,7 @@
             <p>{{ $instrutor }}</p>
         </div>
         <div class="treinamento_criado">
-            <p>Nova Prata / RS {{ $treinamento_criado }}</p>
+            <p>Veranópolis / RS {{ $treinamento_criado }}</p>
         </div>
         <div class="qrcode">
             <img src="data:image/png;base64, {!! base64_encode(QrCode::size(160)->generate($link)) !!} "><br>
