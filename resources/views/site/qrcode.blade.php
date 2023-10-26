@@ -17,7 +17,6 @@
                     <input name="cpf" type="text" class="form-control" id="cpf" placeholder="000.000.000-00">
                     <label for="cpf">CPF</label>
                 </div>
-
                 <button class="btn btn-primary w-100 py-2 mt-3" type="submit">Registrar</button>
             </form>
 
