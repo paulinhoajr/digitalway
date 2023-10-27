@@ -33,7 +33,10 @@
 
             </form>
 
+            {{--@include('site._partials.back', ['rota'=> route('login')])--}}
+
         </div>
+
 
     </div>
 
