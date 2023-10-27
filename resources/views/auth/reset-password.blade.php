@@ -1,39 +1,40 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
+@extends('site.layouts.guest')
 
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+@section('content')
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <div class="row mb-5 mt-5">
+
+        <div class="col-md-6 offset-md-3">
+
+            @include('_partials.message')
+
+            <h2 class="mt-5">Preecha a nova senha</h2>
+
+            <form method="POST" action="{{ route('password.store') }}" class="mt-3">
+                @csrf
+                <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+                <div class="col-sm-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="nome@exemplo.com.br" value="{{ old('email', $request->email) }}" required autofocus autocomplete="username">
+                </div>
+
+                <div class="col-sm-12 mt-3">
+                    <label for="password" class="form-label">Senha</label>
+                    <input type="password" autocomplete="new-password" class="form-control" id="password" name="password" required>
+                </div>
+
+                <div class="col-sm-12 mt-3">
+                    <label for="password_confirmation" class="form-label">Repita Senha</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                </div>
+
+                <button class="btn btn-primary w-100 py-2 mt-3" type="submit">Resetar senha</button>
+
+            </form>
+
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+@endsection
