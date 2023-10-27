@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
             //$table->integer('cidade_id');
-            $table->foreignId('cidade_id');
+            $table->foreignId('cidade_id')->nullable();
             //$table->integer('escola_id');
-            $table->foreignId('escola_id');
+            $table->foreignId('escola_id')->nullable();
             $table->string('nome');
             $table->string('url');
             $table->longText('descricao');

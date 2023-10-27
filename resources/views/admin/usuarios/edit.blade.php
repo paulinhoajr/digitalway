@@ -40,8 +40,8 @@
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <div class="col-sm-3">
-                    <label for="confirm_password" class="form-label">Repita Senha</label>
-                    <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                    <label for="password_confirmation" class="form-label">Repita Senha</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                 </div>
                 <div class="col-sm-3">
                     <label for="role" class="form-label">Regra</label>

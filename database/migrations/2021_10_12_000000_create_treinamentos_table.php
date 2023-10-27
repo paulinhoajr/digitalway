@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('treinamentos', function (Blueprint $table) {
             $table->id();
             //$table->integer('cidade_id');
-            $table->foreignId('cidade_id');
+            $table->foreignId('cidade_id')->nullable();
             //$table->integer('escola_id');
-            $table->foreignId('escola_id');
+            $table->foreignId('escola_id')->nullable();
             //$table->integer('usuario_id');
             $table->foreignId('usuario_id');
             $table->string('nome');
