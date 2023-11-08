@@ -24,7 +24,7 @@
                                 @foreach($escola->videos as $video)
                                     <div class="col-md-3 mt-3">
                                         <iframe width="100%"
-                                                src="{{ $video->url }}">
+                                                src="{{ $video->url }}" allowfullscreen="allowfullscreen">
                                         </iframe>
                                         {{ $video->descricao }}
                                     </div>
