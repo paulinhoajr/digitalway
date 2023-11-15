@@ -15,9 +15,12 @@
         </div>--}}
     </div>
 
-    <div class="table-responsive small">
+    <div class="table-responsive small mb-4">
 
         @include('_partials.message')
+
+        <a href="{{ route('admin.escolas.csv') }}" type="button" class="ri btn btn-outline-primary btn-sm">
+            <svg class="bi"><use xlink:href="#icon_csv"/></svg> NOVO CSV</a>
 
         <a href="{{ route('admin.escolas.create') }}" type="button" class="float-end ri btn btn-outline-secondary btn-sm">
             <svg class="bi"><use xlink:href="#icon_escola"/></svg> NOVA ESCOLA</a>
@@ -43,7 +46,7 @@
                     <td>{{ dateTimeUsParaDateTimeBr($escola->created_at) }}</td>
                     <td>
                         <div class="btn-group float-end" role="group" aria-label="">
-                            <a href="{{ route('admin.escolas.csv', ['id'=>$escola->id]) }}" type="button" class="ri btn btn-outline-success btn-sm"><svg class="bi"><use xlink:href="#icon_csv"/></svg> GERAR CSV</a>
+                            <a href="{{ route('admin.escolas.usuarios.csv', ['id'=>$escola->id]) }}" type="button" class="ri btn btn-outline-success btn-sm"><svg class="bi"><use xlink:href="#icon_csv"/></svg> GERAR CSV</a>
                             <a href="{{ route('admin.escolas.edit', ['id'=>$escola->id]) }}" type="button" class="ri btn btn-outline-primary btn-sm"><svg class="bi"><use xlink:href="#icon_editar"/></svg> EDITAR</a>
                             <a href="{{ route('admin.escolas.delete', ['id'=>$escola->id]) }}" type="button" class="btn btn-outline-danger btn-sm"><svg class="bi"><use xlink:href="#icon_excluir"/></svg> EXCLUIR</a>
                         </div>

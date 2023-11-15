@@ -57,8 +57,11 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
                 Route::post('/update', 'update')->name('escolas.update');
                 Route::get('/delete/{id}', 'delete')->name('escolas.delete');
                 Route::get('/destroy/{id}', 'destroy')->name('escolas.destroy');
-                Route::get('/csv/{id}', 'csv')->name('escolas.csv');
-                Route::post('/gerar', 'gerar')->name('escolas.gerar');
+                Route::get('/usuarios/csv/{id}', 'csv_usuario')->name('escolas.usuarios.csv');
+                Route::post('/usuarios/gerar', 'gerar_usuario')->name('escolas.usuarios.gerar');
+                Route::get('/csv', 'csv_escola')->name('escolas.csv');
+                Route::post('/gerar', 'gerar_escola')->name('escolas.gerar');
+                Route::post('/importar', 'importar_escola')->name('escolas.importar');
             });
     });
 

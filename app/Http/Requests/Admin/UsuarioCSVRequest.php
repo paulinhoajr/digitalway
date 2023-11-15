@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
-class EscolaCSVRequest extends FormRequest
+class UsuarioCSVRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,8 @@ class EscolaCSVRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //'id' => ['required'],
+            'id' => ['required'],
             'nome' => ['required'],
-            'cidade_id' => ['required'],
-            'tipo' => ['required'],
             'linhas' => ['required'],
         ];
     }
