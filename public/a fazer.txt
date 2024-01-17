@@ -1,0 +1,11 @@
+gerar csv para escolas
+
+nova pagina cidades/escolas => listar escolas
+e select pra gerar unico csv
+
+menu municipios listar videos e doc que nao tem escola
+
+
+busca e ordem nos usuarios, botao voltar
+
+remover descricao treinamento

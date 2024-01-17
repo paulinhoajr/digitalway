@@ -46,6 +46,12 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2" href="{{ route('admin.escolas.cidades') }}">
+            <svg class="bi"><use xlink:href="#icon_table"/></svg>
+            Cidades
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link d-flex align-items-center gap-2" href="{{ route('admin.treinamentos.index') }}">
             <svg class="bi"><use xlink:href="#icon_treinamento"/></svg>
             Treinamentos

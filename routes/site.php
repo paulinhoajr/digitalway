@@ -40,8 +40,8 @@ Route::group(['prefix' => '/usuarios', 'where'=>['id'=>'[0-9]+']], function () {
             Route::get('/certificados', 'certificados')->name('certificados');
             Route::get('/certificados/gerar/{id}', 'gerar')->name('certificados.gerar');
             Route::get('/escolas', 'escolas')->name('escolas');
-            //Route::get('/videos', 'videos')->name('videos');
-            //Route::get('/documentos', 'documentos')->name('documentos');
+            Route::get('/videos', 'videos')->name('videos');
+            Route::get('/documentos', 'documentos')->name('documentos');
         });
 
     Route::controller(UsuarioController::class)

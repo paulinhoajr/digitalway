@@ -29,9 +29,23 @@ use League\Csv\Writer;
 
 class EscolaController extends Controller
 {
-    public function index(): View
+    public function cidades(): View
     {
-        $escolas = Escola::latest()->paginate(config('app.paginate'));
+        $escolas = Escola::groupBy('cidade_id')->get();
+
+        return view('admin.escolas.cidades', [
+            'escolas' => $escolas
+        ]);
+    }
+
+    public function index($id=null)
+    {
+        $escolas = Escola::whereNull('deleted_at')
+            ->when($id!=null, function ($query) use ($id) {
+                $query->where('cidade_id', $id);
+            })
+            ->latest()
+            ->paginate(config('app.paginate'));
 
         return view('admin.escolas.index', [
             'escolas' => $escolas

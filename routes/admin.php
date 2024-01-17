@@ -49,7 +49,8 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
         Route::controller(EscolaController::class)
             ->name('admin.')
             ->group(function () {
-                Route::get('/', 'index')->name('escolas.index');
+                Route::get('/cidades', 'cidades')->name('escolas.cidades');
+                Route::get('/{id?}', 'index')->name('escolas.index');
                 Route::get('/create', 'create')->name('escolas.create');
                 Route::post('/store', 'store')->name('escolas.store');
                 Route::get('/show/{id}', 'show')->name('escolas.show');
