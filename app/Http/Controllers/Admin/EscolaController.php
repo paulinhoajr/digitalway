@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CidadeCSVRequest;
 use App\Http\Requests\Admin\EscolaCSVRequest;
 use App\Http\Requests\Admin\EscolaImportarCSVRequest;
 use App\Http\Requests\Admin\EscolaStoreRequest;
@@ -48,7 +49,8 @@ class EscolaController extends Controller
             ->paginate(config('app.paginate'));
 
         return view('admin.escolas.index', [
-            'escolas' => $escolas
+            'escolas' => $escolas,
+            'id' => $id
         ]);
     }
 
@@ -161,6 +163,15 @@ class EscolaController extends Controller
         ]);
     }
 
+    public function csv_cidade($id): View
+    {
+        $escola = Escola::where('id', $id)->first();
+
+        return view('admin.escolas.csv_cidade', [
+            'escola' => $escola
+        ]);
+    }
+
     public function gerar_usuario(UsuarioCSVRequest $request)
     {
         $escola = Escola::where('id', $request->id)->first();
@@ -179,6 +190,41 @@ class EscolaController extends Controller
             {
                 $writer->insertOne([$i, '', '', '', $escola->id]);
                 //$writer->insertOne([$i, fake()->name, only_numbers(fake()->unique()->phoneNumber),fake()->unique()->email, $escola->id]);
+            }
+
+            return response()->download($caminho)->deleteFileAfterSend(true);
+
+        } catch (CannotInsertRecord $e) {
+            $e->getRecord();
+        }
+    }
+
+    public function gerar_cidade(CidadeCSVRequest $request)
+    {
+        $escolas_id = $request->get('escolas');
+
+        $escolas = Escola::whereIn('id', $escolas_id)
+            ->get();
+
+        try {
+
+            $caminho = "storage/csv/".$escolas->first()->cidade->nome.".csv";
+
+            $writer = Writer::createFromPath($caminho, 'w');
+            //$writer->insertAll($records);
+            $writer->setDelimiter(';');
+
+            foreach ($escolas as $escola){
+
+                $writer->insertOne(['Escola','Professor', 'CPF', 'Email', 'UID']);
+
+                for ($i=1;$i<=5;$i++)
+                {
+                    $writer->insertOne([$escola->nome, '', '', '', $escola->id]);
+                    //$writer->insertOne([$i, fake()->name, only_numbers(fake()->unique()->phoneNumber),fake()->unique()->email, $escola->id]);
+                }
+
+                $writer->insertOne(['', '', '', '', '']);
             }
 
             return response()->download($caminho)->deleteFileAfterSend(true);

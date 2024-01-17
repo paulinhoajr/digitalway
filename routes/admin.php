@@ -60,6 +60,9 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
                 Route::get('/destroy/{id}', 'destroy')->name('escolas.destroy');
                 Route::get('/usuarios/csv/{id}', 'csv_usuario')->name('escolas.usuarios.csv');
                 Route::post('/usuarios/gerar', 'gerar_usuario')->name('escolas.usuarios.gerar');
+                Route::get('/cidades/csv/{id}', 'csv_cidade')->name('escolas.cidade.csv');
+                Route::post('/cidades/gerar', 'gerar_cidade')->name('escolas.cidade.gerar');
+
                 Route::get('/csv', 'csv_escola')->name('escolas.csv');
                 Route::post('/gerar', 'gerar_escola')->name('escolas.gerar');
                 Route::post('/importar', 'importar_escola')->name('escolas.importar');
