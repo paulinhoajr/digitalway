@@ -50,7 +50,8 @@ class UsuarioController extends Controller
             ->first();
 
         if (!$usuario){
-            return back()->with("message_alert", "CPF não encontrado.");
+            //return back()->with("message_alert", "CPF não encontrado.");
+            return redirect()->route('site.usuarios.avancar')->with("message_alert", "Você ainda não esta cadastrado, faça-o agora.");
         }
 
         $total =  count($usuario->escolas);
