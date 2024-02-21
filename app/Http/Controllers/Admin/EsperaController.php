@@ -37,6 +37,31 @@ class EsperaController extends Controller
         ]);
     }
 
+    public function limpar(Request $request): RedirectResponse
+    {
+        $this->validate($request, [
+            'esperas' => 'required',
+        ]);
+
+        try {
+            //DB::beginTransaction();
+
+            foreach ($request->esperas as $id) {
+                Espera::destroy($id);
+            }
+
+            //DB::commit();
+
+            return redirect()->route('admin.esperas.index')->with('message', "Itens removidos.");
+
+        }catch (\Exception $e){
+
+            //DB::rollBack();
+            return back()->with('message_fail', $e->getMessage());
+
+        }
+    }
+
     public function store(EsperaCSVRequest $request): RedirectResponse
     {
         if (!$request->hasFile('csv')) {
@@ -71,7 +96,9 @@ class EsperaController extends Controller
             DB::beginTransaction();
 
             foreach ($records as $record) {
-                if (only_numbers($record['CPF'])!="" and $record['Nome']!=""){
+                if ($record['CPF']!="" and $record['Nome']!=""){
+
+                    $cpf = only_numbers(corrige_cpf($record['CPF']));
 
                     $escola = Escola::where('id', only_numbers($record['UID']))->first();
 
@@ -79,7 +106,7 @@ class EsperaController extends Controller
                         return back()->with('message_fail', "ID da escola inexistente.");
                     }
 
-                    $usuario = Usuario::where('cpf', only_numbers($record['CPF']))->first();
+                    $usuario = Usuario::where('cpf', $cpf)->first();
 
                     if ($usuario){
                         $usuarioEscola = UsuariosEscolas::where('usuario_id', $usuario->id)
@@ -96,7 +123,7 @@ class EsperaController extends Controller
                             //continue;
                         }
                     }else{
-                        $espera = Espera::where('cpf', only_numbers($record['CPF']))
+                        $espera = Espera::where('cpf', $cpf)
                             ->where('escola_id', $record['UID'])
                             ->first();
 
@@ -104,7 +131,7 @@ class EsperaController extends Controller
                             $espera = new Espera();
                             $espera->escola_id = $record['UID'];
                             $espera->nome = $record['Nome'];
-                            $espera->cpf = only_numbers($record['CPF']);
+                            $espera->cpf = $cpf;
                             $espera->email = $record['Email'];
                             $espera->save();
                         }

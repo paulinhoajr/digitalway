@@ -42,6 +42,7 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
                 Route::get('/', 'index')->name('esperas.index');
                 Route::get('/importar', 'importar')->name('esperas.importar');
                 Route::post('/store', 'store')->name('esperas.store');
+                Route::post('/limpar', 'limpar')->name('esperas.limpar');
             });
     });
 
