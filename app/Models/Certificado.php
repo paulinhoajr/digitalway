@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Certificado extends Model
 {
-    use SoftDeletes, HasFactory;
+    use  HasFactory; //SoftDeletes
 
     public $timestamps = true;
 

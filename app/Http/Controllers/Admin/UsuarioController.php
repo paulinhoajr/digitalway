@@ -62,14 +62,29 @@ class UsuarioController extends Controller
 
             DB::beginTransaction();
 
-            $usuario = new Usuario();
-            $usuario->nome = $request->nome;
-            $usuario->cpf = only_numbers($request->cpf);
-            $usuario->email = $request->email;
-            $usuario->password = Hash::make($request->password);
-            $usuario->situacao = $request->situacao;
-            $usuario->role = $request->role;
-            $usuario->save();
+            $usuario = Usuario::where('cpf', only_numbers($request->cpf))
+                ->where('role', 'ROLE_TEMP')
+                ->where('situacao', 0)
+                ->first();
+
+            if ($usuario){
+                $usuario->nome = $request->nome;
+                $usuario->cpf = only_numbers($request->cpf);
+                $usuario->email = $request->email;
+                $usuario->password = Hash::make($request->password);
+                $usuario->situacao = $request->situacao;
+                $usuario->role = $request->role;
+                $usuario->save();
+            }else{
+                $usuario = new Usuario();
+                $usuario->nome = $request->nome;
+                $usuario->cpf = only_numbers($request->cpf);
+                $usuario->email = $request->email;
+                $usuario->password = Hash::make($request->password);
+                $usuario->situacao = $request->situacao;
+                $usuario->role = $request->role;
+                $usuario->save();
+            }
 
             DB::commit();
 

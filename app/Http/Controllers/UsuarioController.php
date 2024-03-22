@@ -45,18 +45,52 @@ class UsuarioController extends Controller
 
     public function qrcode_post(QRCODERequest $request): RedirectResponse
     {
-        $usuario = Usuario::where('cpf', only_numbers($request->cpf))
+        $cpf = only_numbers($request->cpf);
+
+        $usuario = Usuario::where('cpf', $cpf)
             ->where('situacao', 1)
             ->first();
 
+        $existe = true;
+
         if (!$usuario){
             //return back()->with("message_alert", "CPF não encontrado.");
-            return redirect()->route('site.usuarios.avancar')->with("message_alert", "Você ainda não esta cadastrado, faça-o agora.");
+            /*if (!Session::has('cert_id')){
+                Session::put('cert_id', $request->id);
+                Session::save();
+            }
+            return redirect()->route('site.usuarios.avancar')->with("message_alert", "Você ainda não está cadastrado, cadastre-se agora.");
+            */
+
+            if (validaCPF($cpf)){
+
+                $usuario = Usuario::where('cpf', $cpf)
+                    ->where('situacao', 0)
+                    ->where('role', 'ROLE_TEMP')
+                    ->first();
+
+                if ($usuario){
+                    return back()
+                        ->with("message_alert", "O usuário já inseriu um certificado, mas não completou o cadastro.");
+                }
+
+                $usuario = new Usuario();
+                $usuario->nome = "TEMPORÁRIO";
+                $usuario->cpf = $cpf;
+                $usuario->email = uniqid()."@alterar.com.br";
+                $usuario->password = Hash::make(uniqid());
+                $usuario->role = "ROLE_TEMP";
+                $usuario->situacao = 0;
+                $usuario->save();
+
+                $existe = false;
+            }
         }
 
-        $total =  count($usuario->escolas);
-        $i=1;
-        foreach ($usuario->escolas as $escola){
+        //$total =  count($usuario->escolas);
+        //$i=1;
+        //todo posso usar isso depois pra dar acesso ao certificado
+        /*foreach ($usuario->escolas as $escola){
 
             $treinamento = Treinamento::where('id', $request->id)
                 ->where(function($query) use ($escola) {
@@ -75,7 +109,7 @@ class UsuarioController extends Controller
             }
 
             $i++;
-        }
+        }*/
 
         $certificado = Certificado::where('usuario_id', $usuario->id)
             ->where('treinamento_id', $request->id)
@@ -91,14 +125,19 @@ class UsuarioController extends Controller
         $certificado->treinamento_id = $request->id;
         $certificado->save();
 
-        return back()->with("message",
-            "Certificado liberado com sucesso.");
+        if ($existe){
+            return back()
+                ->with("message", "Certificado inserido ao CPF.");
+        }else{
+            return back()
+                ->with("message", "Certificado inserido ao CPF, complete o seu cadastro o mais breve possível.");
+        }
+
 
     }
 
     public function avancar()
     {
-
         return view('site.usuarios.avancar');
     }
 
@@ -106,7 +145,9 @@ class UsuarioController extends Controller
     {
         $espera = Espera::where('cpf', only_numbers($request->cpf))->first();
 
-        $usuario = Usuario::where('cpf', only_numbers($request->cpf))->first();
+        $usuario = Usuario::where('cpf', only_numbers($request->cpf))
+            ->where('situacao', 1)
+            ->first();
 
         if (!$espera){
 
@@ -130,7 +171,7 @@ class UsuarioController extends Controller
         }*/
 
         return redirect()->route('site.usuarios.create', [
-            'id'=>$espera->id
+            'id'=>$espera->id,
         ]);
     }
 
@@ -170,7 +211,7 @@ class UsuarioController extends Controller
         }*/
 
         return view('site.usuarios.create', [
-            'espera'=>$espera
+            'espera'=>$espera,
         ]);
     }
 
@@ -192,14 +233,29 @@ class UsuarioController extends Controller
 
                 DB::beginTransaction();
 
-                $usuario = new Usuario();
-                $usuario->nome = $request->nome;
-                $usuario->cpf = $espera->cpf;
-                $usuario->email = $request->email;
-                $usuario->password = Hash::make($request->password);
-                $usuario->role = "ROLE_USUARIO";
-                $usuario->situacao = 1;
-                $usuario->save();
+                $usuario = Usuario::where('cpf', $espera->cpf)
+                    ->where('role', 'ROLE_TEMP')
+                    ->where('situacao', 0)
+                    ->first();
+
+                if ($usuario){
+                    $usuario->nome = $request->nome;
+                    $usuario->cpf = $espera->cpf;
+                    $usuario->email = $request->email;
+                    $usuario->password = Hash::make($request->password);
+                    $usuario->role = "ROLE_USUARIO";
+                    $usuario->situacao = 1;
+                    $usuario->save();
+                }else{
+                    $usuario = new Usuario();
+                    $usuario->nome = $request->nome;
+                    $usuario->cpf = $espera->cpf;
+                    $usuario->email = $request->email;
+                    $usuario->password = Hash::make($request->password);
+                    $usuario->role = "ROLE_USUARIO";
+                    $usuario->situacao = 1;
+                    $usuario->save();
+                }
 
                 foreach ($esperas as $espera){
 
@@ -214,6 +270,16 @@ class UsuarioController extends Controller
                 DB::commit();
 
                 Auth::loginUsingId($usuario->id);
+
+                if (Session::has('cert_id')){
+                    $cert_id = Session::get('cert_id');
+                    $id = $cert_id;
+                    Session::forget('cert_id');
+                    Session::save();
+
+                    return redirect()->route('site.usuarios.qrcode', ['id'=>$id])
+                        ->with('message', "Usuário cadastrado e ativado com sucesso.");
+                }
 
                 return redirect()->route('site.index')
                     ->with('message', "Usuário cadastrado e ativado com sucesso.");

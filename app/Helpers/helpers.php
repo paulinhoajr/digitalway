@@ -257,6 +257,13 @@ if (!function_exists('only_numbers')) {
 	}
 }
 
+if (!function_exists('corrige_cpf')) {
+	function corrige_cpf($value)
+	{
+		return mb_str_pad($value, 11, '0', STR_PAD_LEFT);
+	}
+}
+
 if (!function_exists('mask')) {
 	function mask($val, $mask)
 	{

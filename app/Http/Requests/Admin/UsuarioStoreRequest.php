@@ -25,7 +25,7 @@ class UsuarioStoreRequest extends FormRequest
     {
         return [
             'nome' => ['required', 'string', 'max:255'],
-            'cpf' => ['required', 'cpf', 'max:14', 'unique:'.Usuario::class],
+            'cpf' => ['required', 'cpf', 'max:14'], //, 'unique:'.Usuario::class
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Usuario::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'password_confirmation' => 'required_with:password'
