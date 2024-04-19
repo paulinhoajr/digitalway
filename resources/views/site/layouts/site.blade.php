@@ -1,37 +1,47 @@
 <!doctype html>
 <html lang="{{ config('app.locale') }}" data-bs-theme="auto">
-    <head>
-        <title>Site</title>
+<head>
+    <title>sistema.digitalw.com.br</title>
 
-        @include('site._partials.head')
+    @include('site._partials.head')
 
-        <style>
+    <style>
 
-        </style>
+    </style>
 
-        @yield('head')
-    </head>
-    <body>
-        @include('_partials.icons')
+    @yield('head')
+</head>
+<body>
+@include('_partials.icons')
 
-        <div class="container">
-        @include('site._partials.header')
+<div class="container-fluid headerfooter_bg">
+    <div class="container">
+    @include('site._partials.header')
+    </div>
+</div>
+<div class="container meio">
 
-        <main style="bottom: 0;">
-            {{--<h1 class="visually-hidden">Headers examples</h1>--}}
+    <main>
+        {{--<h1 class="visually-hidden">Headers examples</h1>--}}
 
-                {{--<div class="b-example-divider"></div>--}}
+        {{--<div class="b-example-divider"></div>--}}
 
-                @yield('content')
+        @yield('content')
 
-        </main>
+    </main>
 
+
+
+</div>
+
+<div class="container-fluid headerfooter_bg">
+    <div class="container">
         @include('site._partials.footer')
+    </div>
+</div>
 
-        </div>
+@include('site._partials.scripts')
 
-        @include('site._partials.scripts')
-
-        @yield('scripts')
-    </body>
+@yield('scripts')
+</body>
 </html>

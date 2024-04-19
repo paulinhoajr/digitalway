@@ -1,0 +1,39 @@
+.headerfooter_bg{
+    background: linear-gradient(to bottom,#006395 1%,#00476b 100%);
+    background-color: rgba(0, 0, 0, 0);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-image: linear-gradient(rgb(0, 99, 149) 1%, rgb(0, 71, 107) 100%);
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+}
+.color_white, .color_white a{
+    color: white;
+}
+.color_white a:hover{
+    text-decoration: underline;
+    color: white;
+}
+.meio{
+    min-height: 400px;
+}
+.video_desc{
+    font-size: 0.75em;
+}
+.escolas_titulos{
+    background: #CCC;
+    padding: 10px;
+    margin-top: 35px;
+}
+.escolas_subtitulos{
+    padding:5px;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 35px;
+}
+.mt-35{
+    margin-top: 35px;
+}

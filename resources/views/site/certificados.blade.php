@@ -8,7 +8,7 @@
 
             <h2 class="mt-5">Meus Certificados</h2>
 
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm mt-35">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
