@@ -1,6 +1,7 @@
 @extends('site.layouts.site')
 
 @section('content')
+    <div class="container meio">
 
     <div class="row mb-5">
 
@@ -35,5 +36,5 @@
         </div>
 
     </div>
-
+    </div>
 @endsection

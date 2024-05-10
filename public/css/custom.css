@@ -18,13 +18,15 @@
     color: white;
 }
 .meio{
-    min-height: 400px;
+    min-height: 700px;
 }
 .video_desc{
     font-size: 0.75em;
 }
 .escolas_titulos{
-    background: #CCC;
+    background: linear-gradient(rgb(0, 99, 149) 1%, rgb(0, 71, 107) 100%);
+    text-align: center;
+    color: #FFF;
     padding: 10px;
     margin-top: 35px;
 }
@@ -36,4 +38,26 @@
 }
 .mt-35{
     margin-top: 35px;
+}
+.position_r{
+    position: absolute;
+    top: 450px;
+    right: 400px;
+    color: #FFF;
+    font-weight: bold;
+}
+.m_0{
+    --bs-gutter-x:0;
+}
+.fundo_azul{
+    background: #086497;
+}
+@media only screen and (max-width: 600px) {
+    .position_r{
+        position: absolute;
+        top: 250px;
+        right: 30px;
+        color: #FFF;
+        font-weight: bold;
+    }
 }

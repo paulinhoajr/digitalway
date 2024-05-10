@@ -33,13 +33,13 @@
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <label class="form-label" for="pdf">PDF</label>
+                    <label class="form-label" for="pdf">Arquivo</label>
                     <input type="file" name="pdf" class="form-control">
                 </div>
 
                 <div class="col-sm-6">
                     <label class="form-label" for="cidade">Buscar cidade - Selecione na lista</label>
-                    <input type="text" class="form-control"  id="cidade" name="cidade"  value="{{old('cidade')}}"  placeholder="Cidade - UF" required>
+                    <input type="text" class="form-control"  id="cidade" name="cidade"  value="{{old('cidade')}}"  placeholder="Cidade - UF">
                     <input type="hidden" name="cidade_id" id="cidade_id" value="{{old('cidade_id')}}">
                 </div>
                 <div class="col-sm-6">

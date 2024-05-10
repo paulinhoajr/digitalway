@@ -19,7 +19,7 @@
     @include('site._partials.header')
     </div>
 </div>
-<div class="container meio">
+<div class="container-fluid m_0">
 
     <main>
         {{--<h1 class="visually-hidden">Headers examples</h1>--}}

@@ -26,9 +26,9 @@ class DocumentoUpdateRequest extends FormRequest
     {
         return [
             'escola_id' => ['nullable'],
-            'cidade_id' => ['required'],
+            'cidade_id' => ['nullable'],
             'nome' => ['required'],
-            'pdf' => ['nullable','mimes:pdf', 'max:4096'],
+            'pdf' => ['nullable','max:4096'],
             'descricao' => ['required'],
             'situacao' => ['nullable'],
         ];

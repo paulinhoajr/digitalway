@@ -1,7 +1,7 @@
 @extends('site.layouts.site')
 
 @section('content')
-
+<div class="container meio">
     <div class="row">
 
         <div class="col-md-6 offset-md-3">
@@ -41,7 +41,7 @@
         </div>
 
     </div>
-
+</div>
 @endsection
 
 @section('scripts')

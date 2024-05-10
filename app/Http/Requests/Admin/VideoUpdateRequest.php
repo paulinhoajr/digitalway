@@ -26,7 +26,7 @@ class VideoUpdateRequest extends FormRequest
     {
         return [
             'escola_id' => ['nullable'],
-            'cidade_id' => ['required'],
+            'cidade_id' => ['nullable'],
             'nome' => ['required'],
             'url' => ['nullable'],
             'descricao' => ['required'],

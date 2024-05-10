@@ -401,14 +401,23 @@ class UsuarioController extends Controller
         $usuario = Usuario::where('id', Auth::user()->id)
             ->first();
 
+        $todos_documentos = Documento::whereNull('cidade_id')
+            ->whereNull('escola_id')
+            ->paginate(20);
+
         return view('site.escolas', [
-            'escolas' => $usuario->escolas
+            'escolas' => $usuario->escolas,
+            'documentos' => $todos_documentos
         ]);
     }
 
     public function videos()
     {
         $videos = Video::whereNull('cidade_id')
+            ->whereNull('escola_id')
+            ->paginate(20);
+
+        $todos_videos = Video::whereNull('cidade_id')
             ->whereNull('escola_id')
             ->paginate(20);
 

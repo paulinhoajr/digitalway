@@ -34,7 +34,7 @@
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <label class="form-label" for="pdf">PDF</label>
+                    <label class="form-label" for="pdf">Arquivo</label>
                     <input type="file" name="pdf" class="form-control">
                     @if($documento->situacao != null)
                         <a href="{{ asset('storage/documentos/'.$documento->pdf) }}" target="_blank">{{ $documento->pdf }}</a>
@@ -44,7 +44,7 @@
                 <div class="col-sm-6">
                     <label class="form-label" for="cidade">Buscar cidade - Selecione na lista</label>
                     <input type="text" class="form-control"  id="cidade" name="cidade"
-                           value="{{ $documento->cidade ? $documento->cidade->nome. " - " .$documento->cidade->uf : "" }}"  placeholder="Cidade - UF" required>
+                           value="{{ $documento->cidade ? $documento->cidade->nome. " - " .$documento->cidade->uf : "" }}"  placeholder="Cidade - UF">
                     <input type="hidden" name="cidade_id" id="cidade_id" value="{{ $documento->cidade_id }}">
                 </div>
                 <div class="col-sm-6">

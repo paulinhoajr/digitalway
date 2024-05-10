@@ -36,7 +36,7 @@
                 <div class="col-sm-4">
                     <label class="form-label" for="cidade">Buscar cidade - Selecione na lista</label>
                     <input type="text" class="form-control"  id="cidade" name="cidade"
-                           value="{{ $video->cidade ? $video->cidade->nome. " - " .$video->cidade->uf : "" }}"  placeholder="Cidade - UF" required>
+                           value="{{ $video->cidade ? $video->cidade->nome. " - " .$video->cidade->uf : "" }}"  placeholder="Cidade - UF" >
                     <input type="hidden" name="cidade_id" id="cidade_id" value="{{ $video->cidade_id }}">
                 </div>
                 <div class="col-sm-4">

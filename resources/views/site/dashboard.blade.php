@@ -2,16 +2,17 @@
 
 @section('content')
 
-    <div class="row mb-5">
 
-        <div class="col-md-12">
 
-            <h2 class="mt-5">Inicial</h2>
+        <div class="col-md-12 fundo_azul">
+
+            <h2 class="position_r">Bem Vindo!</h2>
+            <img src="../images/inicial.jpg" class="img-fluid">
 
             @include('_partials.message')
 
         </div>
 
-    </div>
+
 
 @endsection

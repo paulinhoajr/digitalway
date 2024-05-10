@@ -1,7 +1,7 @@
 @extends('site.layouts.site')
 
 @section('content')
-
+<div class="container">
     <div class="row mb-5">
 
         <div class="col-md-12">
@@ -33,9 +33,9 @@
                             </div>
                         @endif
 
-                        @if(count($escola->documentos) > 0)
+                        @if(count($escola->documentos) > 0 OR count($documentos) > 0)
                             <div class="row">
-                                <h5 class="escolas_subtitulos">Documentos</h5>
+                                <h5 class="escolas_subtitulos">Material de Apoio</h5>
 
                                 <table class="table table-striped table-sm">
                                     <thead>
@@ -59,6 +59,20 @@
                                             </td>
                                         </tr>
                                     @endforeach
+
+                                    @foreach($documentos as $documento)
+                                        <tr>
+                                            <td>{{ $documento->nome }}</td>
+                                            <td>{{ $documento->descricao }}</td>
+                                            <td>
+
+                                                <a href="{{ asset('storage/documentos/'.$documento->pdf) }}" type="button" class="ri btn btn-outline-success btn-sm" target="_blank">
+                                                    <svg class="bi"><use xlink:href="#icon_pdf"/></svg> BAIXAR</a>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -72,5 +86,5 @@
         </div>
 
     </div>
-
+</div>
 @endsection
