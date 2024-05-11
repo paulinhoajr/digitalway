@@ -16,6 +16,7 @@ use League\Csv\Reader;
 use League\Csv\Statement;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use League\Csv\Writer;
 
 class EsperaController extends Controller
 {
@@ -84,6 +85,10 @@ class EsperaController extends Controller
 
         $csv = Reader::createFromPath("storage/".$caminho, 'r');
 
+        //$input_bom = $csv->getInputBOM();
+        //$csv->setOutputBOM(Reader::BOM_UTF8);
+        $csv->addStreamFilter('convert.iconv.ISO-8859-15/UTF-8');
+
         $csv->setDelimiter(';');
 
         $csv->setHeaderOffset(0);
@@ -97,6 +102,8 @@ class EsperaController extends Controller
 
             foreach ($records as $record) {
                 if ($record['CPF']!="" and $record['Nome']!=""){
+
+                    //dd($record['Nome']);
 
                     $cpf = only_numbers(corrige_cpf($record['CPF']));
 

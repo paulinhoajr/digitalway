@@ -15,7 +15,7 @@
                         <h4 class="escolas_titulos">#{{ $escola->id }} - {{ $escola->nome }}</h4>
 
                         <p><b>Local:</b> <span>{{ $escola->cidade->nome }} - {{ $escola->cidade->uf }}</span></p>
-                        <p><b>Tipo:</b> <span>{{ $escola->tipo == 1 ? "Pública" : "Particular" }}</span></p>
+                        <p><b>Tipo:</b> <span>{{ $escola->tipo == 0 ? "Pública" : "Particular" }}</span></p>
 
 
                         @if(count($escola->videos) > 0)
@@ -30,6 +30,16 @@
                                         <span class="video_desc">{{ $video->descricao }}</span>
                                     </div>
                                 @endforeach
+                                @foreach($todos_videos as $video)
+                                    <div class="col-md-4 mt-3">
+                                        <iframe width="100%" height="400px"
+                                                src="{{ $video->url }}" allowfullscreen="allowfullscreen">
+                                        </iframe>
+                                        <span class="video_desc">{{ $video->descricao }}</span>
+                                    </div>
+                                @endforeach
+
+
                             </div>
                         @endif
 

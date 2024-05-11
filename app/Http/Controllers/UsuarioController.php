@@ -405,9 +405,14 @@ class UsuarioController extends Controller
             ->whereNull('escola_id')
             ->paginate(20);
 
+        $todos_videos = Video::whereNull('cidade_id')
+            ->whereNull('escola_id')
+            ->paginate(20);
+
         return view('site.escolas', [
             'escolas' => $usuario->escolas,
-            'documentos' => $todos_documentos
+            'documentos' => $todos_documentos,
+            'todos_videos' => $todos_videos,
         ]);
     }
 
@@ -422,7 +427,8 @@ class UsuarioController extends Controller
             ->paginate(20);
 
         return view('site.videos', [
-            'videos' => $videos
+            'videos' => $videos,
+            'todos_videos' => $todos_videos
         ]);
     }
 
