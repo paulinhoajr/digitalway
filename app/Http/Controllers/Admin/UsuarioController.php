@@ -14,6 +14,7 @@ use App\Models\UsuariosEscolas;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,17 @@ class UsuarioController extends Controller
         return view('admin.usuarios.index', [
             'usuarios' => $usuarios
         ]);
+    }
+
+    public function login($id)
+    {
+        /*if(getRole('super-admin')){*/
+        Auth::logout();
+        Auth::loginUsingId($id);
+        return redirect('/')->with('message', 'Voce entrou como um professor!');
+        /*}else{
+            abort(403, 'Area restrita');
+        }*/
     }
 
     public function show($id): View

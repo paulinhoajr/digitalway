@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\TreinamentoStoreRequest;
 use App\Http\Requests\Admin\TreinamentoUpdateRequest;
 use App\Models\Certificado;
 use App\Models\Escola;
+use App\Models\Topic;
 use App\Models\Topico;
 use App\Models\Treinamento;
 use App\Models\Usuario;
@@ -36,8 +37,11 @@ class TreinamentoController extends Controller
             ->orderBy('nome')
             ->get();
 
+        $topicos = Topic::all();
+
         return view('admin.treinamentos.create', [
-            'usuarios' => $usuarios
+            'usuarios' => $usuarios,
+            'topicos' => $topicos
         ]);
     }
 

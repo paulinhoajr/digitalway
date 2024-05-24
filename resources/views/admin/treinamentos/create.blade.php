@@ -44,10 +44,37 @@
                         <option {{ old('situacao' ? (old('situacao') == 0 ? "selected" : "") : "") }} value="0">Inativo</option>
                     </select>
                 </div>
+
+
+
                 <div class="col-sm-12">
                     <a data-repeater-create type="button" class="mt-3">Inserir mais tópicos</a>
                 </div>
                 <div data-repeater-list="topicos">
+
+                    @foreach($topicos as $topico)
+                        <div data-repeater-item>
+                            <!-- innner repeater -->
+                            <div class="inner-repeater">
+                                <div data-repeater-list="inner-list">
+
+                                    <div data-repeater-item>
+                                        <div class="row mt-3">
+                                            <div class="col-sm-10">
+                                                <label for="topico" class="form-label">Novo Tópico</label>
+                                                <input type="text" id="topico" name="topico[]" class="form-control" value="{{$topico->topico}}" />
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="topico" class="form-label">&nbsp;</label><br>
+                                                <button data-repeater-delete class="btn btn-danger">Excluir</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
                     <div data-repeater-item>
                         <!-- innner repeater -->
                         <div class="inner-repeater">
@@ -91,12 +118,22 @@
         </form>
     </div>
 @endsection
+<hr class="my-4">
+
+<button class="float-e
 
 @section('scripts')
 
     <script src="{{ asset('js/jquery.repeater.js') }}"></script>
     <script>
+
+
         $(function() {
+
+            $(".remover").click(function() {
+                var id = $(this).attr('id');
+                $("#div_"+id).hide();
+            });
 
             $(".repeater").repeater();
 

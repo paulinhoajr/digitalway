@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\TreinamentoController;
 use App\Http\Controllers\Admin\CertificadoController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\DocumentoController;
+use App\Http\Controllers\Admin\TopicController;
 
 Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
 
@@ -26,6 +27,7 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
                 Route::get('/create', 'create')->name('usuarios.create');
                 Route::post('/store', 'store')->name('usuarios.store');
                 Route::get('/show/{id}', 'show')->name('usuarios.show');
+                Route::get('/login/{id}', 'login')->name('usuarios.login');
                 Route::get('/edit/{id}', 'edit')->name('usuarios.edit');
                 Route::post('/update', 'update')->name('usuarios.update');
                 Route::get('/delete/{id}', 'delete')->name('usuarios.delete');
@@ -122,6 +124,21 @@ Route::group(['prefix' => '/admin', 'where'=>['id'=>'[0-9]+']], function () {
                 Route::post('/update', 'update')->name('documentos.update');
                 Route::get('/delete/{id}', 'delete')->name('documentos.delete');
                 Route::get('/destroy/{id}', 'destroy')->name('documentos.destroy');
+            });
+    });
+
+    Route::group(['prefix' => '/topicos'], function () {
+        Route::controller(TopicController::class)
+            ->name('admin.')
+            ->group(function () {
+                Route::get('/', 'index')->name('topicos.index');
+                Route::get('/create', 'create')->name('topicos.create');
+                Route::post('/store', 'store')->name('topicos.store');
+                Route::get('/show/{id}', 'show')->name('topicos.show');
+                Route::get('/edit/{id}', 'edit')->name('topicos.edit');
+                Route::post('/update', 'update')->name('topicos.update');
+                Route::get('/delete/{id}', 'delete')->name('topicos.delete');
+                Route::get('/destroy/{id}', 'destroy')->name('topicos.destroy');
             });
     });
 

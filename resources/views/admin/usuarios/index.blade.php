@@ -53,6 +53,7 @@
                     <td>{{ dateTimeUsParaDateTimeBr($usuario->created_at) }}</td>
                     <td>
                         <div class="btn-group float-end" role="group" aria-label="">
+                            <a href="{{ route('admin.usuarios.login', ['id'=>$usuario->id]) }}" type="button" class="ri btn btn-outline-warning btn-sm"><svg class="bi"><use xlink:href="#icon_usuario"/></svg> LOGAR</a>
                             <a href="{{ route('admin.usuarios.show', ['id'=>$usuario->id]) }}" type="button" class="ri btn btn-outline-success btn-sm"><svg class="bi"><use xlink:href="#icon_mostrar"/></svg> MOSTRAR</a>
                             <a href="{{ route('admin.usuarios.edit', ['id'=>$usuario->id]) }}" type="button" class="ri btn btn-outline-primary btn-sm"><svg class="bi"><use xlink:href="#icon_editar"/></svg> EDITAR</a>
                             <a href="{{ route('admin.usuarios.delete', ['id'=>$usuario->id]) }}" type="button" class="btn btn-outline-danger btn-sm"><svg class="bi"><use xlink:href="#icon_excluir"/></svg> EXCLUIR</a>
