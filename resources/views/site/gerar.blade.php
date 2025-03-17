@@ -120,11 +120,9 @@
             <p>Veranópolis / RS {{ $treinamento_criado }}</p>
         </div>
         <div class="qrcode">
-
             <img src="data:image/png;base64, {!! base64_encode(QrCode::size(160)->generate($link)) !!} "><br>
             <p style="margin-top: 0px;">DOCUMENTO ASSINADO</p>
             <p style="margin-top: -18px;">DIGITALMENTE</p>
-
         </div>
     </body>
 </html>
