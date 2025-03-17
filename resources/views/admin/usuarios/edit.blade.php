@@ -43,20 +43,28 @@
                     <label for="password_confirmation" class="form-label">Repita Senha</label>
                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <label for="role" class="form-label">Regra</label>
                     <select class="form-select" id="role" name="role">
                         <option {{ $usuario->role == "ROLE_USUARIO" ? "selected" : "" }} value="ROLE_USUARIO">USUARIO</option>
                         <option {{ $usuario->role == "ROLE_ADMIN" ? "selected" : "" }} value="ROLE_ADMIN">ADMIN</option>
                     </select>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
+                    <label for="instrutor" class="form-label">Instrutor</label>
+                    <select class="form-select" id="instrutor" name="instrutor">
+                        <option {{ $usuario->instrutor == 0 ? "selected" : "" }} value="0">Não</option>
+                        <option {{ $usuario->instrutor == 1 ? "selected" : "" }} value="1">Sim</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-select" id="situacao" name="situacao">
                         <option {{ $usuario->situacao == 1 ? "selected" : "" }} value="1">Ativo</option>
                         <option {{ $usuario->situacao == 0 ? "selected" : "" }} value="0">Inativo</option>
                     </select>
                 </div>
+
 
             </div>
 

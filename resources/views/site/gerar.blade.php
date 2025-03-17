@@ -48,6 +48,12 @@
                 left: 310px;
                 font-size: 25px;
             }
+            .treinamento_data{
+                position: fixed;
+                top: 483px;
+                left: 180px;
+                font-size: 25px;
+            }
             .usuario_cpf{
                 position: fixed;
                 top: 520px;
@@ -97,6 +103,9 @@
         </div>
         <div class="treinamento_carga_horaria">
             <p>{{ $treinamento_carga_horaria }} Horas</p>
+        </div>
+        <div class="treinamento_data">
+            <p>{{ $treinamento_data }}</p>
         </div>
         <div class="usuario_cpf">
             <p>{{ mascara($usuario_cpf, "cpf") }}</p>

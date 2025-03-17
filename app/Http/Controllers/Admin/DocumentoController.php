@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\DocumentoUpdateRequest;
 use App\Models\Documento;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -16,10 +17,20 @@ use Illuminate\View\View;
 
 class DocumentoController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $documentos = Documento::latest()->paginate(config('app.paginate'));
+        $keyword = $request->get('search');
 
+        if (!empty($keyword)) {
+
+            $documentos = Documento::where(function ($query) use ($keyword) {
+                $query->where('nome', 'LIKE', "%$keyword%")
+                    ->orWhere('descricao', 'LIKE', "%$keyword%");
+            })->latest()->paginate(config('app.paginate'));
+
+        } else {
+            $documentos = Documento::latest()->paginate(config('app.paginate'));
+        }
         return view('admin.documentos.index', [
             'documentos' => $documentos
         ]);

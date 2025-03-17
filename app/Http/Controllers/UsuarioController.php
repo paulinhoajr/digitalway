@@ -375,6 +375,7 @@ class UsuarioController extends Controller
             'treinamento_topicos' => $topicos,
             'treinamento_descricao' => $treinamento->dscricao,
             'treinamento_carga_horaria' => $treinamento->carga_horaria,
+            'treinamento_data' => $treinamento->data,
             'treinamento_criado' => dateTimeUsParaBr($treinamento->created_at),
             'link' => $link,
         ];
@@ -403,11 +404,11 @@ class UsuarioController extends Controller
 
         $todos_documentos = Documento::whereNull('cidade_id')
             ->whereNull('escola_id')
-            ->paginate(20);
+            ->get();
 
         $todos_videos = Video::whereNull('cidade_id')
             ->whereNull('escola_id')
-            ->paginate(20);
+            ->get();
 
         return view('site.escolas', [
             'escolas' => $usuario->escolas,

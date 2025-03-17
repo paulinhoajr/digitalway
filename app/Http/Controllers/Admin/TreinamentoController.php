@@ -33,7 +33,7 @@ class TreinamentoController extends Controller
 
     public function create(): View
     {
-        $usuarios = Usuario::where('role', "ROLE_ADMIN")
+        $usuarios = Usuario::where('instrutor', "1")
             ->orderBy('nome')
             ->get();
 
@@ -58,6 +58,7 @@ class TreinamentoController extends Controller
             $treinamento->cidade_id = $request->cidade_id ?? null;
             $treinamento->escola_id = $request->escola_id ?? null;
             $treinamento->carga_horaria = $request->carga_horaria;
+            $treinamento->data = $request->data;
             $treinamento->descricao = $request->descricao;
             $treinamento->situacao = $request->situacao;
             $treinamento->save();
@@ -118,6 +119,7 @@ class TreinamentoController extends Controller
             $treinamento->cidade_id = $request->cidade_id ?? null;
             $treinamento->escola_id = $request->escola_id ?? null;
             $treinamento->carga_horaria = $request->carga_horaria;
+            $treinamento->data = $request->data;
             $treinamento->usuario_id = $request->usuario_id;
             $treinamento->descricao = $request->descricao;
             $treinamento->situacao = $request->situacao;

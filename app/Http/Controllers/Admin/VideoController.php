@@ -8,16 +8,28 @@ use App\Http\Requests\Admin\VideoUpdateRequest;
 use App\Models\Video;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class VideoController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $videos = Video::latest()->paginate(config('app.paginate'));
 
+        $keyword = $request->get('search');
+
+        if (!empty($keyword)) {
+
+            $videos = Video::where(function ($query) use ($keyword) {
+                    $query->where('nome', 'LIKE', "%$keyword%")
+                        ->orWhere('descricao', 'LIKE', "%$keyword%");
+                })->latest()->paginate(config('app.paginate'));
+
+        } else {
+            $videos = Video::latest()->paginate(config('app.paginate'));
+        }
         return view('admin.videos.index', [
             'videos' => $videos
         ]);

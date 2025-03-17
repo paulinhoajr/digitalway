@@ -16,9 +16,8 @@
 
                         <p><b>Local:</b> <span>{{ $escola->cidade->nome }} - {{ $escola->cidade->uf }}</span></p>
                         <p><b>Tipo:</b> <span>{{ $escola->tipo == 0 ? "Pública" : "Particular" }}</span></p>
-
-
-                        @if(count($escola->videos) > 0)
+                        
+                        @if(count($escola->videos) > 0 or count($todos_videos) > 0)
                             <div class="row">
                                 <h5 class="escolas_subtitulos">Vídeos</h5>
 

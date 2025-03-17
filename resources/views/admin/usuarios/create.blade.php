@@ -42,14 +42,21 @@
                     <label for="password_confirmation" class="form-label">Repita Senha</label>
                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <label for="role" class="form-label">Regra</label>
                     <select class="form-select" id="role" name="role">
                         <option value="ROLE_USUARIO">USUARIO</option>
                         <option value="ROLE_ADMIN">ADMIN</option>
                     </select>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
+                    <label for="instrutor" class="form-label">Instrutor</label>
+                    <select class="form-select" id="instrutor" name="instrutor">
+                        <option {{ old('instrutor' ? (old('instrutor') == 0 ? "selected" : "") : "") }} value="0">Não</option>
+                        <option {{ old('situacao' ? (old('situacao') == 1 ? "selected" : "") : "") }} value="1">Sim</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-select" id="situacao" name="situacao">
                         <option {{ old('situacao' ? (old('situacao') == 1 ? "selected" : "") : "") }} value="1">Ativo</option>

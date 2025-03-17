@@ -23,6 +23,7 @@ Route::controller(HomeController::class)
     ->group(function () {
 
         Route::get('/confirma/{id}', 'confirma')->name('confirma');
+        Route::get('/teste', 'teste')->name('teste');
 
     });
 

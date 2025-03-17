@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('nome');
             $table->longText('descricao');
             $table->string('carga_horaria');
+            $table->string('data');
             $table->integer('situacao');
             $table->rememberToken();
             $table->timestamps();

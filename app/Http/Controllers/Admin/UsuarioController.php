@@ -23,11 +23,26 @@ use Illuminate\View\View;
 
 class UsuarioController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $usuarios = Usuario::where('role', "!=","ROLE_SUPERADMIN")
-            ->latest()
-            ->paginate(config('app.paginate'));
+        $keyword = $request->get('search');
+
+        if (!empty($keyword)) {
+
+            $usuarios = Usuario::where('role', "!=","ROLE_SUPERADMIN")
+            ->where(function ($query) use ($keyword) {
+                $query->where('nome', 'LIKE', "%$keyword%")
+                    ->orWhere('email', 'LIKE', "%$keyword%")
+                    ->orWhere('cpf', 'LIKE', "$keyword");
+            })->latest()->paginate(config('app.paginate'));
+
+        } else {
+            $usuarios = Usuario::where('role', "!=","ROLE_SUPERADMIN")
+                ->latest()
+                ->paginate(config('app.paginate'));
+        }
+
+
 
         return view('admin.usuarios.index', [
             'usuarios' => $usuarios
@@ -84,6 +99,7 @@ class UsuarioController extends Controller
                 $usuario->cpf = only_numbers($request->cpf);
                 $usuario->email = $request->email;
                 $usuario->password = Hash::make($request->password);
+                $usuario->instrutor = $request->instrutor;
                 $usuario->situacao = $request->situacao;
                 $usuario->role = $request->role;
                 $usuario->save();
@@ -140,6 +156,7 @@ class UsuarioController extends Controller
             if ($request->password != null) {
                 $usuario->password = Hash::make($request->password);
             }
+            $usuario->instrutor = $request->instrutor;
             $usuario->situacao = $request->situacao;
             $usuario->role = $request->role;
             $usuario->save();

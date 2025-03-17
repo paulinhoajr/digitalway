@@ -45,7 +45,15 @@
                         <option {{ $treinamento->situacao == 0 ? "selected" : "" }} value="0">Inativo</option>
                     </select>
                 </div>
+
+                <div class="col-sm-12">
+                    <label for="data" class="form-label">Data ou intervalo</label>
+                    <input type="text" class="form-control" id="data" name="data" placeholder="Data ou intervalo de data do treinamento" value="{{ $treinamento->data }}">
+                </div>
+
                 <hr class="my-4">
+
+
                 @foreach($treinamento->topicos as $topico)
 
                     <div class="col-sm-1">Tópico</div>
